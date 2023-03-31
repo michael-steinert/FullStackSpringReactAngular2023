@@ -28,4 +28,149 @@
   required Dependencies from these Repositories
 - `<distributionManagement>`: This Tag is used to specify the Distribution Management Settings for the Project. It
   includes Elements such as Repository, SnapshotRepository, and Site
-- 
+
+### Java Embedded Web Servers
+
+- Java Embedded Web Servers are lightweight Web Servers that can be embedded within a Java Application. These Servers
+  provide a convenient Way to develop, test and deploy Web Applications without the Need for a separate Web Server
+  Installation
+- In this Context, Tomcat, Jetty and Undertow are popular Java Embedded Web Servers
+    - __Apache Tomcat__ is an Open Source Web Server that is widely used for Developing Java Web Applications. Tomcat
+      supports Servlets and JavaServer Pages (JSPs) and provides a simple and lightweight HTTP Server. Tomcat is easy to
+      set up and configure and supports a range of advanced Features such as SSL, Virtual Hosting and Clustering
+    - __Jetty__ is an Open Source Web Server and Servlet Container for Java Applications. It is designed to be
+      lightweight and fast, Jetty offers a modular Architecture that allows Users to customise the Server to suit their
+      Needs. Jetty supports WebSocket, SPDY and HTTP/2 Protocols and is widely used in Embedded Applications such as IoT
+      Devices and mobile Applications
+    - __Undertow__ is a Web Server designed to be lightweight and flexible. It is also a Component of WildFly
+      Application Server. Undertow supports both Blocking and Non-Blocking I/O and provides an Embedded Servlet
+      Container for deploying web Applications. Undertow is easy to configure and provides excellent Performance even
+      for high-traffic Websites
+
+### API (Application Programming Interface)
+
+- An API is a Set of Protocols, Routines and Tools used to build Software Applications. An API defines how different
+  Software Components should interact with each other. It provides a standard Way for different Software Applications to
+  communicate and share Data
+- APIs can be divided into different Types, such as RESTful APIs, SOAP APIs and GraphQL APIs. Each Type has its own Set
+  of Characteristics and is suitable for different Use Cases.
+- APIs are used for a variety of Purposes, such as Integrating with Third-Party Services, Building Web and Mobile
+  Applications, Creating Software Libraries, and Automating Tasks
+
+## Spring
+
+### Application Context
+
+- When Beans are created, they are stored in an Instance of ApplicationContext
+
+### Bean
+
+- Each Component in a Spring Application is called a Bean
+- A Class is annotated as such with __@bean__, or another Annotation that inherits from it. This tells the IOC (
+  Inversion of Control)/DI (Dependency Injection) System inside Spring to treat the Class as a Component within the
+  System, so that it can be injected as a Dependency, or receive Dependency Injections into it via @Autowired
+  Annotations
+- The Default Bean Scope is Singleton Beans, which are created once and then reused as the Application Runs
+
+#### Singleton Beans
+
+- Singleton Beans are stateless and therefore do not store any Information internally
+
+#### Prototype Beans
+
+- Unlike Singleton Beans, each Class that depends on a Prototype Bean depends on a separate Instance of that Bean
+- Each Time a Prototype Bean is injected, a new Instance of that Bean is created
+- Prototype Beans are stateful, so they will store Information internally
+
+### Annotations
+
+- The __@SpringBootApplication__ Annotation is a Combination of three Annotations: __@SpringBootConfiguration__, *
+  *@EnableAutoConfiguration** and __@ComponentScan__. It is used to indicate that a Class is a Spring Boot Application.
+  The __@SpringBootApplication__ tells Spring Boot to enable Automatic Configuration, Component Scanning, and other
+  Features required to build a Spring Boot Application. It is typically used at the Entry Point of a Spring Boot
+  Application, such as the Main Class
+- The __@RestController__ Annotation is used to indicate that a Class is a RESTful Web Service. It is a specialised
+  Version of the __@Controller__ Annotation used specifically for Building RESTful Web Services. It tells Spring that
+  the Class should be treated as a RESTful Controller and that the Methods in the Class should return Response Data in a
+  Format suitable for Consumption by Web Clients
+- The __@GetMapping__ Annotation is used to map HTTP GET Requests to a Method in a Spring Controller. It tells Spring to
+  map a GET Request to the annotated Method. The URL Pattern for the Mapping can be specified using the Value Attribute
+  of the Annotation
+
+### Spring Web MVC
+
+- Spring Web MVC is a Framework for Building Web Applications using the Model-View-Controller (MVC) Design Pattern. It
+  is Part of the Spring Framework, which is a Java Framework for Building Enterprise Applications
+- The Model represents the Data and Business Logic of the Application, the View is responsible for Rendering the User
+  Interface, and the Controller is responsible for Processing User Requests, invoking the appropriate Business Logic,
+  and returning the Response
+- Some Key features of Spring Web MVC are:
+    - __Dispatcher Servlet__: This is the central Servlet that processes incoming Requests and sends them to the
+      appropriate Controller. The DispatcherServlet is responsible for Handling all HTTP Requests and Routing them to
+      the appropriate Controller
+    - __Controllers__: Controllers are responsible for Processing User Requests and Generating the appropriate
+      Responses. Controllers receive User Input, validate it, invoke the appropriate Business Logic, and send the
+      Response back to the Client
+    - __Views__: Views are responsible for Rendering the Response generated by the Controller. A View can be an HTML
+      Page or any other Type of Output Format
+    - __Data Binding__: Spring Web MVC provides Data Binding Capabilities that allow Developers to map incoming HTTP
+      Requests to Java Objects and vice versa. Data Binding simplifies the Process of Handling User Input and eliminates
+      the Need for manual Data Conversion
+    - __Validation__: Spring Web MVC provides a Validation Framework that allows Developers to validate User Input and
+      ensure that it meets certain Criteria before Processing it. This helps to reduce Errors and improve Application
+      Reliability
+    - __Interceptors__: Interceptors are used to intercept incoming Requests and outgoing Responses. They can be used
+      for Tasks such as Logging, Security Checks or Performance Monitoring
+
+## JSON (JavaScript Object Notation)
+
+- JSON is a lightweight Data Interchange Format that is easy for Humans to read and write, and easy for Machines to
+  parse and generate
+- JSON is used as an Alternative to XML for Transferring Data between a Server and a Web Application. It is a Text
+  Format that is completely Language independent. JSON is based on a Subset of the JavaScript Programming Language
+- JSON Data is represented as Key-Value Pairs, where the Keys are Strings and the Values can be any Data Type, such as
+  Strings, Numbers, Booleans, Arrays, or other JSON Objects
+
+## HTTP (Hypertext Transfer Protocol)
+
+- HTTP is an Application Layer Protocol used to transfer Data over the Internet. It is the Foundation of the World Wide
+  Web and is used to transfer Resources such as HTML Documents, Images, Videos and other Types of Files
+- HTTP works on a Client-Server Model, where the Client sends Requests to the Server and the Server responds to those
+  Requests. HTTP uses specific Methods to specify the Action that the Client wants the Server to perform
+- The most common Methods are:
+    - __GET__: retrieves Information from the Server
+    - __POST__: sends Data to the Server
+    - __PUT__: updates an existing Resource on the Server
+    - __DELETE__: removes a Resource from the Server
+- HTTP uses a Uniform Resource Identifier (URI) to identify the Resource the Client wants to access. The URI consists of
+  a Scheme, a Domain Name or IP address, and a Path to the Resource on the Server
+- HTTP also uses a Set of Status Codes to indicate the Outcome of a Request
+- The most common Status Codes are:
+    - __1xx (Informational)__: This Class of Status Codes indicates that the Request has been received and the Server is
+      continuing to process it
+    - __2xx (Successful)__: This Class of Status Codes indicates that the Request was successful and the Server has
+      delivered the requested Content
+    - __3xx (Redirection)__: This Class of Status Codes indicates that the Client needs to take further Action to
+      complete the Request
+    - __4xx (Client Error)__: This Class of Status Codes indicates that the Request contains bad Syntax or can not be
+      fulfilled by the Server
+    - __5xx (Server Error)__: This Class of Status Codes indicates that the Server encountered an Error while Attempting
+      to fulfil the Request
+- HTTP is a stateless Protocol, meaning that each Request is independent of all previous Requests. To maintain State,
+  Web Applications use Techniques such as Cookies and Sessions
+
+### URL (Uniform Resource Locator)
+
+- A URL is the Address of a Resource on the Internet, such as a Web Page, Image, or File
+- A URL consists of several Parts, which are:
+    - __Protocol__: This indicates the Protocol used to access the Resource, such as HTTP, HTTPS, FTP, or others. The
+      Protocol is followed by a Colon and two forward Slashes
+    - __Domain Name or IP Address__: This identifies the Server on which the Resource is located. The Domain Name is a
+      Human-readable Name, while the IP Address is a numerical Address
+    - __Port Number__: This is the Port Number to which the Request should be sent. This is optional and is usually
+      omitted if the default Port for the Protocol is used
+    - __Path__: This is the Location of the Resource on the server, such as a File or Directory Path
+    - __Query String__: This contains additional Parameters used to refine the Request or pass Data to the Server. It
+      starts with a Question Mark and consists of Key-Value Pairs separated by Ampersands
+    - __Fragment Identifier__: This identifies a specific Part of the Resource, such as a Section of a Web Page. It
+      starts with a Hash Symbol followed by a Fragment Identifier
