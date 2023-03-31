@@ -122,6 +122,41 @@
     - __Interceptors__: Interceptors are used to intercept incoming Requests and outgoing Responses. They can be used
       for Tasks such as Logging, Security Checks or Performance Monitoring
 
+### Spring Data JPA
+
+- Spring Data JPA is a Library that builds on Top of JPA to provide additional Functionality and Features. It simplifies
+  Data Access Layer Development by providing a Set of easy-to-use APIs and Annotations
+- Spring Data JPA provides Repositories that contain commonly used CRUD Operations for working with Entities. These
+  Repositories are created by extending the `CrudRepository` or `JpaRepository` Interfaces, which provide a Set of
+  generic Methods for working with Entities. Spring Data JPA also supports Query Methods, which allow Developers to
+  create custom Methods that execute complex Database Queries based on Method Naming Conventions
+- Spring Data JPA provides support for many popular Databases by providing Auto-Configuration and Database-specific
+  Extensions
+- By using Spring Data JPA, Developers can write less Boilerplate Code, which reduces the Amount of Code needed for
+  Database Operations
+
+#### JPA (Jakarta Persistence API)
+
+- JPA is a Java Specification that provides a Set of Interfaces and Annotations for mapping Java Objects to relational
+  Databases
+- JPA provides a high-level, Object-relational Mapping (ORM) API that allows Developers to interact with a Database
+  using Java Objects. With JPA, Developers can define Mappings between Java Classes and Database Tables, and can perform
+  CRUD (Create, Read, Update, Delete) Operations on those Objects using a simple API
+- JPA also supports advanced Features such as Lazy Loading, Caching, and Transactions, making it a powerful and flexible
+  Tool for working with Relational Databases in Java Applications. In addition, JPA is Database-agnostic, which means
+  that it can be used with any Relational Database that has a JDBC (Java Database Connectivity) Driver
+
+#### PSQL Commands
+
+| Command                       | Description                 |
+|-------------------------------|-----------------------------|
+| docker exec -it postgres bash | Execute a Bash in Container |
+| psql -U postgres              | Connect to PSQL             |
+| \q                            | Quit PSQL                   |
+| \l                            | List Databases              |
+| \c                            | Connect to a Database       |
+| \dt                           | List Tables of Database     |
+
 ## JSON (JavaScript Object Notation)
 
 - JSON is a lightweight Data Interchange Format that is easy for Humans to read and write, and easy for Machines to
