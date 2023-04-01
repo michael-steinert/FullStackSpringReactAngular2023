@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 
 class CustomerJpaDataAccessServiceTest {
 
-    private CustomerJpaDataAccessService customerJpaDataAccessService;
+    private CustomerJpaDataAccessService underTest;
     private AutoCloseable autoCloseable;
     @Mock
     private CustomerRepository customerRepository;
@@ -18,7 +18,7 @@ class CustomerJpaDataAccessServiceTest {
     @BeforeEach
     void setUp() {
         autoCloseable = MockitoAnnotations.openMocks(this);
-        customerJpaDataAccessService = new CustomerJpaDataAccessService(customerRepository);
+        underTest = new CustomerJpaDataAccessService(customerRepository);
     }
 
     @AfterEach
@@ -30,7 +30,7 @@ class CustomerJpaDataAccessServiceTest {
     @Test
     void selectAllCustomers() {
         // When
-        customerJpaDataAccessService.selectAllCustomers();
+        underTest.selectAllCustomers();
         // Then
         verify(customerRepository).findAll();
     }
@@ -40,7 +40,7 @@ class CustomerJpaDataAccessServiceTest {
         //Given
         int customerId = 1;
         // When
-        customerJpaDataAccessService.selectCustomerById(customerId);
+        underTest.selectCustomerById(customerId);
         // Then
         verify(customerRepository).findById(customerId);
     }
@@ -50,7 +50,7 @@ class CustomerJpaDataAccessServiceTest {
         // Given
         Customer customer = new Customer(1, "Bruno", "bruno@mail.com", 14);
         // When
-        customerJpaDataAccessService.insertCustomer(customer);
+        underTest.insertCustomer(customer);
         // Then
         verify(customerRepository).save(customer);
     }
@@ -60,7 +60,7 @@ class CustomerJpaDataAccessServiceTest {
         // Given
         Customer customer = new Customer(1, "Bruno", "bruno@mail.com", 14);
         // When
-        customerJpaDataAccessService.updateCustomer(customer);
+        underTest.updateCustomer(customer);
         // Then
         verify(customerRepository).save(customer);
     }
@@ -70,7 +70,7 @@ class CustomerJpaDataAccessServiceTest {
         // Given
         int customerId = 0;
         // When
-        customerJpaDataAccessService.removeCustomer(customerId);
+        underTest.removeCustomer(customerId);
         // Then
         verify(customerRepository).deleteById(customerId);
     }
@@ -80,7 +80,7 @@ class CustomerJpaDataAccessServiceTest {
         // Given
         int customerId = 0;
         // When
-        customerJpaDataAccessService.existsCustomerWithId(customerId);
+        underTest.existsCustomerWithId(customerId);
         // Then
         verify(customerRepository).existsCustomerById(customerId);
     }
@@ -90,7 +90,7 @@ class CustomerJpaDataAccessServiceTest {
         // Given
         String email = "name@gmail.com";
         // When
-        customerJpaDataAccessService.existsCustomerWithEmail(email);
+        underTest.existsCustomerWithEmail(email);
         // Then
         verify(customerRepository).existsCustomerByEmail(email);
     }

@@ -12,13 +12,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
 
-    private CustomerJdbcDataAccessService customerJdbcDataAccessService;
+    private CustomerJdbcDataAccessService underTest;
     private final CustomerRowMapper customerRowMapper = new CustomerRowMapper();
 
     @BeforeEach
     void setUp() {
         // Before each Test a new Instance is created
-        customerJdbcDataAccessService = new CustomerJdbcDataAccessService(getJdbcTemplate(), customerRowMapper);
+        underTest = new CustomerJdbcDataAccessService(getJdbcTemplate(), customerRowMapper);
     }
 
     @Test
@@ -29,9 +29,9 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
                 29
         );
-        customerJdbcDataAccessService.insertCustomer(customer);
+        underTest.insertCustomer(customer);
         // When
-        List<Customer> actualCustomers = customerJdbcDataAccessService.selectAllCustomers();
+        List<Customer> actualCustomers = underTest.selectAllCustomers();
         // Then
         assertThat(actualCustomers).isNotEmpty();
     }
@@ -46,15 +46,15 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
                 email,
                 29
         );
-        customerJdbcDataAccessService.insertCustomer(customer);
-        int customerId = customerJdbcDataAccessService.selectAllCustomers()
+        underTest.insertCustomer(customer);
+        int customerId = underTest.selectAllCustomers()
                 .stream()
                 .filter(c -> c.getEmail().equals(email))
                 .map(Customer::getId)
                 .findFirst()
                 .orElseThrow();
         // When
-        Optional<Customer> actualCustomer = customerJdbcDataAccessService.selectCustomerById(customerId);
+        Optional<Customer> actualCustomer = underTest.selectCustomerById(customerId);
         // Then
         assertThat(actualCustomer).isPresent().hasValueSatisfying(c -> {
             assertThat(c.getId()).isEqualTo(customerId);
@@ -69,7 +69,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         // Given
         int customerId = 0;
         // When
-        var actualCustomer = customerJdbcDataAccessService.selectCustomerById(customerId);
+        var actualCustomer = underTest.selectCustomerById(customerId);
         // Then
         assertThat(actualCustomer).isEmpty();
     }
@@ -82,9 +82,9 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
                 29
         );
-        customerJdbcDataAccessService.insertCustomer(customer);
+        underTest.insertCustomer(customer);
         // When
-        List<Customer> actualCustomers = customerJdbcDataAccessService.selectAllCustomers();
+        List<Customer> actualCustomers = underTest.selectAllCustomers();
         // Then
         assertThat(actualCustomers).isNotEmpty();
     }
@@ -98,8 +98,8 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
                 email,
                 29
         );
-        customerJdbcDataAccessService.insertCustomer(customer);
-        int customerId = customerJdbcDataAccessService.selectAllCustomers()
+        underTest.insertCustomer(customer);
+        int customerId = underTest.selectAllCustomers()
                 .stream()
                 .filter(c -> c.getEmail().equals(email))
                 .map(Customer::getId)
@@ -110,9 +110,9 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         Customer updatedCustomer = new Customer();
         updatedCustomer.setId(customerId);
         updatedCustomer.setName(newName);
-        customerJdbcDataAccessService.updateCustomer(updatedCustomer);
+        underTest.updateCustomer(updatedCustomer);
         // Then
-        Optional<Customer> actualCustomer = customerJdbcDataAccessService.selectCustomerById(customerId);
+        Optional<Customer> actualCustomer = underTest.selectCustomerById(customerId);
         assertThat(actualCustomer).isPresent().hasValueSatisfying(c -> {
             assertThat(c.getId()).isEqualTo(customerId);
             assertThat(c.getName()).isEqualTo(newName);
@@ -130,8 +130,8 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
                 email,
                 29
         );
-        customerJdbcDataAccessService.insertCustomer(customer);
-        int customerId = customerJdbcDataAccessService.selectAllCustomers()
+        underTest.insertCustomer(customer);
+        int customerId = underTest.selectAllCustomers()
                 .stream()
                 .filter(c -> c.getEmail().equals(email))
                 .map(Customer::getId)
@@ -140,9 +140,9 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         // When
         Customer notUpdatedCustomer = new Customer();
         notUpdatedCustomer.setId(customerId);
-        customerJdbcDataAccessService.updateCustomer(notUpdatedCustomer);
+        underTest.updateCustomer(notUpdatedCustomer);
         // Then
-        Optional<Customer> actualCustomer = customerJdbcDataAccessService.selectCustomerById(customerId);
+        Optional<Customer> actualCustomer = underTest.selectCustomerById(customerId);
         assertThat(actualCustomer).isPresent().hasValueSatisfying(c -> {
             assertThat(c.getId()).isEqualTo(customerId);
             assertThat(c.getAge()).isEqualTo(customer.getAge());
@@ -160,17 +160,17 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
                 email,
                 29
         );
-        customerJdbcDataAccessService.insertCustomer(customer);
-        int customerId = customerJdbcDataAccessService.selectAllCustomers()
+        underTest.insertCustomer(customer);
+        int customerId = underTest.selectAllCustomers()
                 .stream()
                 .filter(c -> c.getEmail().equals(email))
                 .map(Customer::getId)
                 .findFirst()
                 .orElseThrow();
         // When
-        customerJdbcDataAccessService.removeCustomer(customerId);
+        underTest.removeCustomer(customerId);
         // Then
-        Optional<Customer> actualCustomer = customerJdbcDataAccessService.selectCustomerById(customerId);
+        Optional<Customer> actualCustomer = underTest.selectCustomerById(customerId);
         assertThat(actualCustomer).isNotPresent();
     }
 
@@ -183,15 +183,15 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
                 email,
                 29
         );
-        customerJdbcDataAccessService.insertCustomer(customer);
-        int customerId = customerJdbcDataAccessService.selectAllCustomers()
+        underTest.insertCustomer(customer);
+        int customerId = underTest.selectAllCustomers()
                 .stream()
                 .filter(c -> c.getEmail().equals(email))
                 .map(Customer::getId)
                 .findFirst()
                 .orElseThrow();
         // When
-        var actualCustomer = customerJdbcDataAccessService.existsCustomerWithId(customerId);
+        var actualCustomer = underTest.existsCustomerWithId(customerId);
         // Then
         assertThat(actualCustomer).isTrue();
     }
@@ -201,7 +201,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         // Given
         int customerId = 0;
         // When
-        var actualCustomer = customerJdbcDataAccessService.existsCustomerWithId(customerId);
+        var actualCustomer = underTest.existsCustomerWithId(customerId);
         // Then
         assertThat(actualCustomer).isFalse();
     }
@@ -216,9 +216,9 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
                 email,
                 29
         );
-        customerJdbcDataAccessService.insertCustomer(customer);
+        underTest.insertCustomer(customer);
         // When
-        boolean actualCustomer = customerJdbcDataAccessService.existsCustomerWithEmail(email);
+        boolean actualCustomer = underTest.existsCustomerWithEmail(email);
         // Then
         assertThat(actualCustomer).isTrue();
     }
@@ -228,7 +228,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         // Given
         String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
         // When
-        boolean actualCustomer = customerJdbcDataAccessService.existsCustomerWithEmail(email);
+        boolean actualCustomer = underTest.existsCustomerWithEmail(email);
         // Then
         assertThat(actualCustomer).isFalse();
     }

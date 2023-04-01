@@ -18,11 +18,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CustomerRepositoryTest extends SetupTestcontainersSuite {
 
     @Autowired
-    private CustomerRepository customerRepository;
+    private CustomerRepository underTest;
 
     @BeforeEach
     void setUp() {
-        customerRepository.deleteAll();
+        underTest.deleteAll();
     }
 
     @Test
@@ -34,15 +34,15 @@ class CustomerRepositoryTest extends SetupTestcontainersSuite {
                 email,
                 29
         );
-        customerRepository.save(customer);
-        int customerId = customerRepository.findAll()
+        underTest.save(customer);
+        int customerId = underTest.findAll()
                 .stream()
                 .filter(c -> c.getEmail().equals(email))
                 .map(Customer::getId)
                 .findFirst()
                 .orElseThrow();
         // When
-        boolean existsCustomer = customerRepository.existsCustomerById(customerId);
+        boolean existsCustomer = underTest.existsCustomerById(customerId);
         // Then
         assertThat(existsCustomer).isTrue();
     }
@@ -53,7 +53,7 @@ class CustomerRepositoryTest extends SetupTestcontainersSuite {
         // Given
         int customerId = 0;
         // When
-        boolean existsCustomer = customerRepository.existsCustomerById(customerId);
+        boolean existsCustomer = underTest.existsCustomerById(customerId);
         // Then
         assertThat(existsCustomer).isFalse();
     }
@@ -67,9 +67,9 @@ class CustomerRepositoryTest extends SetupTestcontainersSuite {
                 email,
                 29
         );
-        customerRepository.save(customer);
+        underTest.save(customer);
         // When
-        boolean existsCustomer = customerRepository.existsCustomerByEmail(email);
+        boolean existsCustomer = underTest.existsCustomerByEmail(email);
         // Then
         assertThat(existsCustomer).isTrue();
     }
@@ -79,7 +79,7 @@ class CustomerRepositoryTest extends SetupTestcontainersSuite {
         // Given
         String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
         // When
-        boolean existsCustomer = customerRepository.existsCustomerByEmail(email);
+        boolean existsCustomer = underTest.existsCustomerByEmail(email);
         // Then
         assertThat(existsCustomer).isFalse();
     }
