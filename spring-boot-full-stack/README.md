@@ -157,6 +157,14 @@
 | \c                            | Connect to a Database       |
 | \dt                           | List Tables of Database     |
 
+#### JDBC (Java Database Connectivity) Template
+
+- JDBC is an API that defines how a Client can access a Database
+- JDBCTemplates simplifies the Use of JDBC. It executes the JDBC Workflow, leaving the Application Code to generate SQL
+  and extract Results
+- A DataSource Object provides a Way for JDBC Clients to obtain a DBMS (Database Management System) Connection. This
+  DataSource Entry points to a Connection Pool with available Connections to use
+
 ## JSON (JavaScript Object Notation)
 
 - JSON is a lightweight Data Interchange Format that is easy for Humans to read and write, and easy for Machines to
@@ -209,3 +217,12 @@
       starts with a Question Mark and consists of Key-Value Pairs separated by Ampersands
     - __Fragment Identifier__: This identifies a specific Part of the Resource, such as a Section of a Web Page. It
       starts with a Hash Symbol followed by a Fragment Identifier
+
+## Flyway
+
+- Flyway increases Reliability of Deployments by Versioning the used Database with Migrations
+- Database Migrations allow to:
+    - Recreate a Database from scratch
+    - Make it clear at all Times what State a Database is in
+    - Migrate in a deterministic Way from a current Version of the Database to a newer one
+ 

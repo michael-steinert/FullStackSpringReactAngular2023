@@ -10,7 +10,8 @@ spring:
     password: password
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      # Validate that Entities match the Schema which is controlled by Flyway
+      ddl-auto: validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
