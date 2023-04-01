@@ -148,14 +148,16 @@
 
 #### PSQL Commands
 
-| Command                       | Description                 |
-|-------------------------------|-----------------------------|
-| docker exec -it postgres bash | Execute a Bash in Container |
-| psql -U postgres              | Connect to PSQL             |
-| \q                            | Quit PSQL                   |
-| \l                            | List Databases              |
-| \c                            | Connect to a Database       |
-| \dt                           | List Tables of Database     |
+| Command                                                                                                                                                         | Description                 |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|
+| docker ps --format="ID\t{{.ID}}\nNAME\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n" | List formatted Containers   |
+| docker exec -it postgres bash                                                                                                                                   | Execute a Bash in Container |
+| psql -U postgres                                                                                                                                                | Connect to PSQL             |
+| psql -U postgres -d customer                                                                                                                                    | Connect to PSQL             |
+| \q                                                                                                                                                              | Quit PSQL                   |
+| \l                                                                                                                                                              | List Databases              |
+| \c                                                                                                                                                              | Connect to a Database       |
+| \dt                                                                                                                                                             | List Tables of Database     |
 
 #### JDBC (Java Database Connectivity) Template
 
@@ -225,4 +227,14 @@
     - Recreate a Database from scratch
     - Make it clear at all Times what State a Database is in
     - Migrate in a deterministic Way from a current Version of the Database to a newer one
- 
+
+## Testcontainers
+
+- Testcontainers for Java is a Java Library that supports JUnit Testing and provides lightweight, disposable Instances
+  of common Databases, Selenium Web Browsers, or anything else that can be run in a Docker Container
+- Testcontainers facilitate the following Types of Testing:
+    - __Data Access Layer Integration Testing__: use a containerized Instance of a MySQL, PostgreSQL or Oracle Database
+      to test the Data Access Layer Code for full Compatibility
+      -__Application Integration Testing__: run the Application in a short-lived Test Mode with Dependencies such as
+      Databases, Message Queues or Web Servers
+    - __UI/Acceptance Testing__: use containerized Web Browsers compatible with Selenium to run automated UI Tests

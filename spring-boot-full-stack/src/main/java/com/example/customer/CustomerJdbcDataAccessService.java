@@ -12,8 +12,10 @@ public class CustomerJdbcDataAccessService implements CustomerDao {
     private final JdbcTemplate jdbcTemplate;
     private final CustomerRowMapper customerRowMapper;
 
-    public CustomerJdbcDataAccessService(JdbcTemplate jdbcTemplate,
-                                         CustomerRowMapper customerRowMapper) {
+    public CustomerJdbcDataAccessService(
+            JdbcTemplate jdbcTemplate,
+            CustomerRowMapper customerRowMapper
+    ) {
         this.jdbcTemplate = jdbcTemplate;
         this.customerRowMapper = customerRowMapper;
     }
