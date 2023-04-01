@@ -28,7 +28,7 @@ class CustomerJpaDataAccessServiceTest {
     }
 
     @Test
-    void selectAllCustomers() {
+    void canSelectAllCustomers() {
         // When
         underTest.selectAllCustomers();
         // Then
@@ -36,7 +36,7 @@ class CustomerJpaDataAccessServiceTest {
     }
 
     @Test
-    void selectCustomerById() {
+    void caSelectCustomerById() {
         //Given
         int customerId = 1;
         // When
@@ -46,7 +46,7 @@ class CustomerJpaDataAccessServiceTest {
     }
 
     @Test
-    void insertCustomer() {
+    void canInsertCustomer() {
         // Given
         Customer customer = new Customer(1, "Bruno", "bruno@mail.com", 14);
         // When
@@ -56,7 +56,7 @@ class CustomerJpaDataAccessServiceTest {
     }
 
     @Test
-    void updateCustomer() {
+    void canUpdateCustomer() {
         // Given
         Customer customer = new Customer(1, "Bruno", "bruno@mail.com", 14);
         // When
@@ -66,7 +66,7 @@ class CustomerJpaDataAccessServiceTest {
     }
 
     @Test
-    void removeCustomer() {
+    void canRemoveCustomer() {
         // Given
         int customerId = 0;
         // When

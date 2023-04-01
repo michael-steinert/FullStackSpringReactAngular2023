@@ -12,7 +12,7 @@ import static org.mockito.Mockito.when;
 class CustomerRowMapperTest {
 
     @Test
-    void mapRow() throws SQLException {
+    void canMapRow() throws SQLException {
         // Given
         CustomerRowMapper customerRowMapper = new CustomerRowMapper();
         ResultSet resultSet = mock(ResultSet.class);

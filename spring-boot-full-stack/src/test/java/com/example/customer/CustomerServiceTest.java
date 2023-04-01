@@ -29,7 +29,7 @@ class CustomerServiceTest {
     }
 
     @Test
-    void getAllCustomers() {
+    void canGetAllCustomers() {
         // When
         underTest.getAllCustomers();
         // Then

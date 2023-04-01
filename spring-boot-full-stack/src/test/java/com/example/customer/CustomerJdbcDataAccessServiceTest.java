@@ -22,7 +22,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     }
 
     @Test
-    void selectAllCustomers() {
+    void canSelectAllCustomers() {
         // Given
         Customer customer = new Customer(
                 FAKER.name().fullName(),
@@ -38,7 +38,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
 
 
     @Test
-    void selectCustomerById() {
+    void canSelectCustomerById() {
         // Given
         String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
         Customer customer = new Customer(
@@ -75,7 +75,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     }
 
     @Test
-    void insertCustomer() {
+    void canInsertCustomer() {
         // Given
         Customer customer = new Customer(
                 FAKER.name().fullName(),
@@ -90,7 +90,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     }
 
     @Test
-    void updateCustomer() {
+    void canUpdateCustomer() {
         // Given
         String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
         Customer customer = new Customer(
@@ -152,7 +152,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     }
 
     @Test
-    void removeCustomer() {
+    void canRemoveCustomer() {
         // Given
         String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
         Customer customer = new Customer(
