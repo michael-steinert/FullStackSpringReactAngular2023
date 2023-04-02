@@ -1,5 +1,64 @@
 # Spring Boot Full Stack
 
+## DevOps
+
+- DevOps is a Set of Practices that combines Software Development (Dev) and Information Technology Operations (Ops) to
+  shorten the System Development Lifecycle while Delivering Features, Fixes and Updates frequently and reliably
+- The objectives of DevOps are:
+    - Improved Collaboration between Development and Operations Teams
+    - Faster Delivery of Software and Updates to Customers
+    - Increased Reliability and Stability of Software and Infrastructure
+    - Increased Efficiency and Cost Savings using Cloud Technology
+- The DevOps Lifecycle consists of the following Stages: Planning, Development, Testing, Deployment and Monitoring and
+  Logging
+- Each Stage of the DevOps Lifecycle is iterative, with Feedback Loops between Stages to ensure continuous Improvement
+- DevOps is a Set of the following Practices:
+    - Continuous Integration (CI): The Practice of regularly merging Code Changes into a central Repository, which is
+      then automatically built and tested
+    - Continuous Delivery (CD): The Practice of automating the entire Software Release Process, from Building and
+      Testing to Deployment and Infrastructure Provisioning
+    - Infrastructure as Code (IaC): The Practice of Managing and Provisioning Infrastructure Resources using Code and
+      Automation Tools
+    - Monitoring and Logging: The Practice of continuously Monitoring and Logging Software and Infrastructure
+      Performance to identify Problems and Opportunities for Improvement
+
+## Docker
+
+- Docker is a Platform for Building, Running and Shipping Applications
+- It allows Developers to easily build and deploy Applications that run in Containers
+- It ensures that local Development is the same as in any Environment
+- Containers are an Abstraction at the Application Layer that packages Code and Dependencies together
+- Multiple Containers can run on the same Machine, sharing the OS Kernel with other Containers, each running as an
+  isolated Process in User Space
+
+## Jib
+
+- JIB is an open-source Containerization Tool that builds optimized Docker and OCI Images for Java Applications without
+  requiring Docker Daemon or even Docker Installation on the Developer's Machine
+- It builds Container Images directly from the Java Build without the Need to package the Application in a container
+- It simplifies the Creation of Docker Images and also the Push to a Registry
+- It provides optimized Layering and Caching Strategies that significantly reduce the Build Time for Container Images
+
+### Docker Commands
+
+| Command                               | Description                                               |
+|---------------------------------------|-----------------------------------------------------------|
+| docker ps                             | List running Containers                                   |
+| docker ps -a                          | 	List all Containers (including stopped ones)             |
+| docker images                         | List Images                                               |
+| docker run <image>                    | Run a Container from an Image                             |
+| docker stop <container>               | 	Stop a running Container                                 |
+| docker rm <container>                 | Remove a stopped Container                                |
+| docker rmi <image>                    | 	Remove an Image                                          |
+| docker build <path/to/dockerfile>     | 	Build an Image from a Dockerfile                         |
+| docker tag <image> <new_name:tag>     | 	Tag an Image with a new Name and optional Tag            |
+| docker login                          | 	Log in to a Docker Registry                              |
+| docker push <image>                   | Push an Image to a Docker Registry                        |
+| docker pull <image>                   | Pull an Image from a Docker Registry                      |
+| docker exec -it <container> <command> | 	Execute a Command in a running Container                 |
+| docker-compose up                     | Start all Services defined in a `docker-compose.yml` File |
+| docker-compose down                   | 	Stop all Services defined in a `docker-compose.yml` File |
+
 ## POM (Project Object Model)
 
 - The POM is an XML File used by Apache Maven to manage a Project's Dependencies, Build Configuration, and other
@@ -96,6 +155,18 @@
 - The __@GetMapping__ Annotation is used to map HTTP GET Requests to a Method in a Spring Controller. It tells Spring to
   map a GET Request to the annotated Method. The URL Pattern for the Mapping can be specified using the Value Attribute
   of the Annotation
+
+### Spring Boot Maven Plugin
+
+- The Spring Boot Maven Plugin provides Spring Boot Support in Apache Maven
+- It allows to package executable JAR or WAR Archives, run Spring Boot Applications, generate Build Information, and
+  launch Spring Boot Applications before running Integration Tests
+- The `Surefire Plugin` is used during the Test Phase of the Build Lifecycle to execute the Unit Tests of an Application
+- The `Failsafe Plugin` is designed to run Integration Tests while the Surefire Plugin is designed to run Unit Tests
+- The Failsafe Plugin is used during the `integration-test` and `verify` Phases of the Build Lifecycle to execute the
+  Integration Tests
+- The Failsafe Plugin will not fail the Build during the `integration-test` Phase, thus enabling
+  the `post-integration-test` Phase to execute
 
 ### Spring Web MVC
 
