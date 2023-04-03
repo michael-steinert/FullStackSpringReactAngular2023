@@ -22,6 +22,70 @@
     - Monitoring and Logging: The Practice of continuously Monitoring and Logging Software and Infrastructure
       Performance to identify Problems and Opportunities for Improvement
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/29623199/229474154-d8132aea-d456-4a68-8bd1-7644b63e00d1.png" alt="CI_CD" />
+</P>
+
+### Bastion Host
+
+- A Bastion Host is a secure Gateway Server that acts as a single Point of Access to Servers and Resources on a private
+  Network. It is typically deployed on a public Subnet of a Virtual Private Cloud (VPC) in AWS
+- The Bastion Host provides a secure Way for Administrators to connect to Servers and Resources on a private Network
+  from outside the Network, without exposing those Resources directly to the Internet. The Bastion Host acts as an
+  Intermediary between the public Internet and the private Network, providing an additional Layer of Security by
+  enforcing Access Controls and Monitoring Traffic
+
+## Cloud Computing
+
+- Cloud Computing refers to a Network of remote Servers hosted on the Internet that are used to store, manage and
+  process Data, rather than a local Server. These Servers are typically owned and operated by third-party Companies
+- It provides a wide Range of Services, such as Computing, Storage, Databases, Networking, Machine Learning, and more,
+  that can be accessed by Individuals or Organisations over the Internet
+- It allows Users to access their Data and Applications over the Internet
+- One Benefit of Cloud Computing is Scalability, which means that Users can easily adjust the Amount of Computing
+  Resources, Storage and other Services they use as they need them, without having to invest in expensive Hardware and
+  Infrastructure
+- Cloud Computing also offers high Availability and Reliability, as Data is stored in multiple Locations and can be
+  easily recovered in the Event of a Disaster or Hardware Failure
+
+### AWS (Amazon Web Services)
+
+- AWS offers a wide range of Services, including Computing, Storage, Databases, Analytics, Networking, Machine Learning,
+  Security, and more. Some of the most popular AWS Services include:
+    - Amazon EC2 (Elastic Compute Cloud),
+    - Amazon S3 (Simple Storage Service),
+    - Amazon RDS (Relational Database Service),
+    - and Amazon Lambda (a serverless computing platform)
+- AWS offers a Pay-per-Use Pricing Model, which means Users only pay for the Resources they use. This makes it a
+  cost-effective Option for Organisations of all Sizes, from Startups to large Enterprises
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/29623199/229475736-831ba9af-7782-4315-903e-3a7842342489.png" alt="AWS_Infrastructure" />
+</P>
+
+#### Amazon VPC (Virtual Private Cloud)
+
+- Amazon VPC gives complete Control over the virtual Network Environment, including Resource Placement, Connectivity and
+  Security
+- Amazon VPC can create public and private Subnets. In the Case of public Subnets, Services are accessible to all via
+  the Internet, while in the case of private Subnets, Services are only accessible within the Subnet
+
+#### AWS Elastic Beanstalk
+
+- Elastic Beanstalk is a Service for Deploying and Scaling Web Applications and Services
+- It handles automatically the Deployment of the uploaded Code - from Capacity Provisioning, Load Balancing and
+  automatic Scaling to Application Health Monitoring
+
+#### Amazon ECS (Elastic Container Service)
+
+- Amazon ECS is a highly scalable and fast Container Management Service that simplifies Running, Terminating and
+  Managing Containers in a Cluster
+
+#### Amazon EC2 (Elastic Compute Cloud)
+
+- Amazon EC2 provides Cloud Computing with a choice of the latest Processors, Storage, Networks, Operating Systems and
+  Pricing Models to meet User Workload Requirements
+
 ## Docker
 
 - Docker is a Platform for Building, Running and Shipping Applications
@@ -290,6 +354,18 @@
       starts with a Question Mark and consists of Key-Value Pairs separated by Ampersands
     - __Fragment Identifier__: This identifies a specific Part of the Resource, such as a Section of a Web Page. It
       starts with a Hash Symbol followed by a Fragment Identifier
+
+## SSH Keys
+
+- SSH Keys are a Form of Authentication used in the Secure Shell (SSH) Protocol to establish a secure Connection between
+  two Computers
+- When a User connects to an SSH Server, the Server asks them to authenticate themselves. Typically, this involves
+  entering a Username and Password. However, SSH Keys provide an Alternative and more secure Method of Authentication
+- An SSH Key is a Pair of cryptographic Keys, consisting of a public Key and a private Key. The public Key is stored on
+  the SSH Server, while the private Key is stored on the User's Computer. When a User connects to the Server, the Server
+  sends a Challenge Message that the User's Computer signs using the private Key and sends back to the Server. The
+  Server verifies the Signature against the corresponding public Key, and if the Signature is valid, the Connection is
+  established
 
 ## Flyway
 
