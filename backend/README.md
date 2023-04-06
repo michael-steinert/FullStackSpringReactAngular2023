@@ -40,6 +40,14 @@
 - GitHub Actions automates all Software Workflows with CI/CD
 - It allows to build, test and deploy Code directly from the GitHub Repository
 
+### Service Containers
+
+- Service Containers are Docker Containers that provide an easy and portable Way to host Services that might be needed
+  to test or run the Application in a Workflow
+- Service Containers can be configured for each Job in a Workflow. GitHub creates a new Docker Container for each
+  Service configured in the Workflow, and destroys the Service Container when the Job completes
+- Steps in a Job can communicate with any Service Containers that are Part of the same Job
+
 ### Workflow
 
 - A Workflow is an automated Process that can be added to a Repository

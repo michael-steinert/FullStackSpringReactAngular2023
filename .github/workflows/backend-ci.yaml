@@ -8,3 +8,35 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      # Setup Postgres
+      postgres:
+        image: postgres:15.1
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: customer
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      # Check out Code into Action Runner
+      - uses: actions/checkout@v3
+      # Setup Java in Action Runner
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          # Caching Maven Dependencies on Action Runner
+          cache: 'maven'
+      # Scripts are executed on assigned Action Runner
+      - name: Build and run Unit and Integration Tests with Maven
+        # Do not display Transfer Progress and run in non-interactive Mode
+        run: mvn -ntp -B verify
