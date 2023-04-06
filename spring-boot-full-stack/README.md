@@ -35,6 +35,21 @@
   Intermediary between the public Internet and the private Network, providing an additional Layer of Security by
   enforcing Access Controls and Monitoring Traffic
 
+## GitHub Actions
+
+- GitHub Actions automates all Software Workflows with CI/CD
+- It allows to build, test and deploy Code directly from the GitHub Repository
+
+### Workflow
+
+- A Workflow is an automated Process that can be added to a Repository
+- Workflows consist of one or more Jobs, and can be scheduled or triggered by an Event, and can be used to build, test,
+  package, release, or deploy Software Code on GitHub
+- Events can be triggered by Push or Pull Requests, Webhooks or manual and scheduled Events
+- A Job is a Set of Steps running in parallel
+- A Step is a single Task that can execute Commands in a Job. The task can be an Action or a Shell Command
+- An Action is a Set of standalone Commands that are combined in Steps to create a Job
+
 ## Cloud Computing
 
 - Cloud Computing refers to a Network of remote Servers hosted on the Internet that are used to store, manage and
