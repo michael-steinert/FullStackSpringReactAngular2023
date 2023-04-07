@@ -1,0 +1,84 @@
+name: CD - Deploy Backend
+on:
+  # Enabling to run Workflow manually
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - backend/**
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15.1
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: customer
+        ports:
+          - 5432:5432
+        options:
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    defaults:
+      run:
+        working-directory: ./backend
+    steps:
+      # Check out Code into Action Runner
+      - uses: actions/checkout@v3
+      # Setup Java in Action Runner
+      - name: Setup Java 17 Temurin
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+      # Login to Docker Hub
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+      # Generate Build Number of Date
+      - name: Generate Build Number
+        id: build-number
+        # Setting Build Number as an Output of these Step
+        run: echo "BUILD_NUMBER=$(date '+%d.%m.%Y.%H.%M.%S')" >> $GITHUB_OUTPUT
+        # Build, package and push Application
+      - name: Build, package and push Application with Maven
+        # Passing Docker Image Tag during Runtime
+        # Jib Goal `Build` will build and push the Image into Docker Hub
+        run: mvn -ntp -B verify -Ddocker.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}} jib:build
+        # Replace Tag of Image with Build Number in Dockerrun.aws.json
+        # Sed is a Stream Editor that is used to perform Text Transformations on an Input Stream
+      - name: Update Dockerrun.aws.json api image tag with new build number
+        run: |
+          echo "Dockerrun.aws.json before Updating Tag"
+          cat ../Dockerrun.aws.json
+          sed -i -E 's_(michaelxsteinert/spring-boot-backend:)([^"]*)_\1'${{steps.build-number.outputs.BUILD_NUMBER}}'_' ../Dockerrun.aws.json
+          echo "Dockerrun.aws.json after Updating Tag"
+          cat ../Dockerrun.aws.json
+      # Deploy to AWS Elastic Beanstalk
+      - name: Deploy to Elastic Beanstalk
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ secrets.EB_APPLICATION_NAME }}
+          environment_name: ${{ secrets.EB_ENVIRONMENT_NAME }}
+          version_label: ${{ steps.build-number.outputs.BUILD_NUMBER }}
+          version_description: ${{ github.SHA }}
+          region: ${{ secrets.EB_REGION }}
+          deployment_package: ./backend/Dockerrun.aws.json
+      # Commit and push Changes of Dockerrun.aws.json to Github
+      - name: Commit and push Dockerrun.aws.json to Github
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add ../Dockerrun.aws.json
+          git commit -m "Update `Dockerrun.aws.json` Docker Image with new Tag ${{ steps.build-number.outputs.BUILD_NUMBER }}"
+          git push

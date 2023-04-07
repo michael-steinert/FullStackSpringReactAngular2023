@@ -2,8 +2,8 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
-      "name": "spring-boot-api",
-      "image": "michaelxsteinert/spring-boot-api:latest",
+      "name": "spring-boot-backend",
+      "image": "michaelxsteinert/spring-boot-backend:latest",
       "essential": true,
       "memory": 512,
       "portMappings": [
