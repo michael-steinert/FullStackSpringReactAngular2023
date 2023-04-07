@@ -20,3 +20,18 @@
   on what is actually needed to run the Application
 - This can reduce the overall size of the Dependencies installed when the Application is deployed, as well as reducing
   the Potential for Security Vulnerabilities
+
+## Hooks
+
+- Hooks allow Developers to reuse stateful Logic across multiple Components. This is achieved by defining the stateful
+  Logic in a Custom Hook, which can then be used in any Component that needs that Logic
+- Each built-in Hook serves a specific Purpose and provides a Way to handle different Aspects of stateful Logic
+    - __useState__: Allows Components to manage their own State. It returns a State Value and a Function to update that
+      Value
+    - __useEffect__: Allows Components to handle Side Effects, such as Fetching Data or Manipulating the DOM, after
+      Rendering. It takes a Callback Function and an optional Array of Dependencies, and executes the Callback Function
+      after Rendering and whenever the Dependencies change
+    - __useContext__: Allows Components to access Context Data, such as Theme or Localisation Information, without
+      having to pass it through multiple Levels of Props
+    - __useReducer__: Allows Components to manage complex State Logic, such as handling multiple related Values or
+      updating State based on previous State
