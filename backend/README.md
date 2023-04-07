@@ -58,6 +58,20 @@
 - A Step is a single Task that can execute Commands in a Job. The task can be an Action or a Shell Command
 - An Action is a Set of standalone Commands that are combined in Steps to create a Job
 
+### Workflow Testing
+
+- `act` is a powerful Tool that can be used with GitHub Actions to quickly test and refine a Continuous Integration and
+  Continuous Delivery (CI/CD) Pipeline
+- It uses Docker Containers locally to run Steps directly in GitHub Actions, so it allows Developers to run independent
+  Stages in a Pipeline, and it generally improves the Feedback Loop when Pipelines are built with GitHub Actions
+
+| Command     | Description                                                    |
+|-------------|----------------------------------------------------------------|
+| act -l      | List all the Actions in the YAML File                          |
+| act push -l | List Actions for a specific Event (for example the Push Event) |
+| act push    | Run the Workflow as if a specific Push to Master Event occured |
+| act -j test | Run a specific Job                                             |
+
 ## Cloud Computing
 
 - Cloud Computing refers to a Network of remote Servers hosted on the Internet that are used to store, manage and

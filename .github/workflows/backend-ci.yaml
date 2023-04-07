@@ -30,7 +30,8 @@ jobs:
       # Check out Code into Action Runner
       - uses: actions/checkout@v3
       # Setup Java in Action Runner
-      - uses: actions/setup-java@v3
+      - name: Setup Java 17 Temurin
+        uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
