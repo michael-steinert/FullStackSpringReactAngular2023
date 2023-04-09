@@ -35,3 +35,16 @@
       having to pass it through multiple Levels of Props
     - __useReducer__: Allows Components to manage complex State Logic, such as handling multiple related Values or
       updating State based on previous State
+
+## CORS (Cross-Origin Resource Sharing)
+
+- CORS is a Security Feature implemented in Web Browsers to prevent malicious Websites from making unauthorised Requests
+  to the Resources of another Website
+- When a Website makes a Request to another Domain (i.e. another Origin), the Browser checks that the Server hosting the
+  requested Resource allows the requesting Domain to access it. This is done using HTTP Headers sent with the Request
+  and Response
+- If the Server allows the requesting Domain to access the Resource, the Browser allows the Request to proceed and
+  returns the requested Data to the original Website. If the Server does not allow the requesting Domain to access the
+  Resource, the Browser blocks the Request and returns an CORS Error
+- The CORS Mechanism is important because it prevents malicious Websites from stealing sensitive Information or
+  performing Actions on behalf of a User on another Website
