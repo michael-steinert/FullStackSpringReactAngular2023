@@ -3,6 +3,7 @@ package com.example.journey;
 import com.example.customer.Customer;
 import com.example.customer.CustomerRegistrationRequest;
 import com.example.customer.CustomerUpdateRequest;
+import com.example.customer.Gender;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,8 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@mail.com";
         int age = RANDOM.nextInt(1, 100);
-        CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(name, email, age);
+        Gender gender = Gender.MALE;
+        CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(name, email, age, gender);
         // Send a Post Request to create a Customer
         webTestClient.post()
                 .uri(CUSTOMER_URI)
@@ -58,7 +60,7 @@ public class CustomerIntegrationTest {
                 .returnResult()
                 .getResponseBody();
         // Checking that expected Customer is present
-        Customer expectedCustomer = new Customer(name, email, age);
+        Customer expectedCustomer = new Customer(name, email, age, gender);
         assertThat(customers)
                 .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
                 .contains(expectedCustomer);
@@ -88,7 +90,8 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@mail.com";
         int age = RANDOM.nextInt(1, 100);
-        CustomerRegistrationRequest request = new CustomerRegistrationRequest(name, email, age);
+        Gender gender = Gender.MALE;
+        CustomerRegistrationRequest request = new CustomerRegistrationRequest(name, email, age, gender);
         // Send a Post Request to create a Customer
         webTestClient.post()
                 .uri(CUSTOMER_URI)
@@ -117,7 +120,12 @@ public class CustomerIntegrationTest {
                 .orElseThrow();
         // Create Customer Update Request
         String newName = "Bruns";
-        CustomerUpdateRequest updateRequest = new CustomerUpdateRequest(newName, null, null);
+        CustomerUpdateRequest updateRequest = new CustomerUpdateRequest(
+                newName,
+                null,
+                null,
+                null
+        );
         // Send a Put Request to update Customer
         webTestClient.put()
                 .uri(CUSTOMER_URI + "/{customerId}", customerId)
@@ -137,7 +145,7 @@ public class CustomerIntegrationTest {
                 .expectBody(Customer.class)
                 .returnResult()
                 .getResponseBody();
-        Customer expectedCustomer = new Customer(customerId, newName, email, age);
+        Customer expectedCustomer = new Customer(customerId, newName, email, age, gender);
         assertThat(updatedCustomer).isEqualTo(expectedCustomer);
     }
 
@@ -149,7 +157,8 @@ public class CustomerIntegrationTest {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@mail.com";
         int age = RANDOM.nextInt(1, 100);
-        CustomerRegistrationRequest request = new CustomerRegistrationRequest(name, email, age);
+        Gender gender = Gender.MALE;
+        CustomerRegistrationRequest request = new CustomerRegistrationRequest(name, email, age, gender);
         // Send a Post Request to create a Customer
         webTestClient.post()
                 .uri(CUSTOMER_URI)

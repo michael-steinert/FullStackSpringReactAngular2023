@@ -48,7 +48,13 @@ class CustomerJpaDataAccessServiceTest {
     @Test
     void canInsertCustomer() {
         // Given
-        Customer customer = new Customer(1, "Bruno", "bruno@mail.com", 14);
+        Customer customer = new Customer(
+                1,
+                "Bruno",
+                "bruno@mail.com",
+                14,
+                Gender.MALE
+        );
         // When
         underTest.insertCustomer(customer);
         // Then
@@ -58,7 +64,13 @@ class CustomerJpaDataAccessServiceTest {
     @Test
     void canUpdateCustomer() {
         // Given
-        Customer customer = new Customer(1, "Bruno", "bruno@mail.com", 14);
+        Customer customer = new Customer(
+                1,
+                "Bruno",
+                "bruno@mail.com",
+                14,
+                Gender.MALE
+        );
         // When
         underTest.updateCustomer(customer);
         // Then

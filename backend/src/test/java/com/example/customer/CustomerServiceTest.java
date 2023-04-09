@@ -40,7 +40,13 @@ class CustomerServiceTest {
     void canGetCustomer() {
         //Given
         int customerId = 0;
-        Customer customer = new Customer(customerId, "Bruno", "bruno@mail.com", 14);
+        Customer customer = new Customer(
+                customerId,
+                "Bruno",
+                "bruno@mail.com",
+                14,
+                Gender.MALE
+        );
         when(customerDao.selectCustomerById(customerId)).thenReturn(Optional.of(customer));
         // When
         Customer actualCustomer = underTest.getCustomer(customerId);
@@ -69,7 +75,8 @@ class CustomerServiceTest {
         CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(
                 "Bruno",
                 email,
-                14
+                14,
+                Gender.MALE
         );
         // When
         underTest.addCustomer(customerRegistrationRequest);
@@ -93,7 +100,8 @@ class CustomerServiceTest {
         CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(
                 "Bruno",
                 email,
-                14
+                14,
+                Gender.MALE
         );
         // When
         assertThatThrownBy(() -> underTest.addCustomer(customerRegistrationRequest))
@@ -107,10 +115,16 @@ class CustomerServiceTest {
     void canUpdateCustomer() {
         // Given
         int customerId = 10;
-        Customer customer = new Customer(customerId, "Bruno", "bruno@mail.com", 14);
+        Customer customer = new Customer(
+                customerId,
+                "Bruno",
+                "bruno@mail.com",
+                14,
+                Gender.MALE
+        );
         when(customerDao.selectCustomerById(customerId)).thenReturn(Optional.of(customer));
         String newEmail = "bruns@mail.com";
-        CustomerUpdateRequest customerUpdateRequest = new CustomerUpdateRequest("Bruns", newEmail, 15);
+        CustomerUpdateRequest customerUpdateRequest = new CustomerUpdateRequest("Bruns", newEmail, 15, Gender.MALE);
         when(customerDao.existsCustomerWithEmail(newEmail)).thenReturn(false);
         // When
         underTest.updateCustomer(customerId, customerUpdateRequest);
@@ -127,10 +141,16 @@ class CustomerServiceTest {
     void willThrowWhenTryingToUpdateCustomerEmailWhenAlreadyTaken() {
         // Given
         int customerId = 10;
-        Customer customer = new Customer(customerId, "Bruno", "bruno@mail.com", 14);
+        Customer customer = new Customer(
+                customerId,
+                "Bruno",
+                "bruno@mail.com",
+                14,
+                Gender.MALE
+        );
         when(customerDao.selectCustomerById(customerId)).thenReturn(Optional.of(customer));
         String newEmail = "bruns@mail.com";
-        CustomerUpdateRequest updateRequest = new CustomerUpdateRequest(null, newEmail, null);
+        CustomerUpdateRequest updateRequest = new CustomerUpdateRequest(null, newEmail, null, null);
         when(customerDao.existsCustomerWithEmail(newEmail)).thenReturn(true);
         // When
         assertThatThrownBy(() -> underTest.updateCustomer(customerId, updateRequest))
@@ -144,9 +164,20 @@ class CustomerServiceTest {
     void willThrowWhenCustomerUpdateHasNoChanges() {
         // Given
         int customerId = 10;
-        Customer customer = new Customer(customerId, "Bruno", "bruno@mail.com", 14);
+        Customer customer = new Customer(
+                customerId,
+                "Bruno",
+                "bruno@mail.com",
+                14,
+                Gender.MALE
+        );
         when(customerDao.selectCustomerById(customerId)).thenReturn(Optional.of(customer));
-        CustomerUpdateRequest customerUpdateRequest = new CustomerUpdateRequest(customer.getName(), customer.getEmail(), customer.getAge());
+        CustomerUpdateRequest customerUpdateRequest = new CustomerUpdateRequest(
+                customer.getName(),
+                customer.getEmail(),
+                customer.getAge(),
+                customer.getGender()
+        );
         // When
         assertThatThrownBy(() -> underTest.updateCustomer(customerId, customerUpdateRequest))
                 .isInstanceOf(RequestValidationException.class)

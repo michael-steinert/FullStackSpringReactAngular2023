@@ -32,7 +32,12 @@ public class CustomerService {
             throw new DuplicateResourceException("Email %s already exists".formatted(email));
         }
         customerDao.insertCustomer(
-                new Customer(customerRegistrationRequest.name(), email, customerRegistrationRequest.age())
+                new Customer(
+                        customerRegistrationRequest.name(),
+                        email,
+                        customerRegistrationRequest.age(),
+                        customerRegistrationRequest.gender()
+                )
         );
     }
 

@@ -27,7 +27,8 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                29
+                29,
+                Gender.MALE
         );
         underTest.insertCustomer(customer);
         // When
@@ -44,7 +45,8 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                29
+                29,
+                Gender.MALE
         );
         underTest.insertCustomer(customer);
         int customerId = underTest.selectAllCustomers()
@@ -61,6 +63,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
             assertThat(c.getName()).isEqualTo(customer.getName());
             assertThat(c.getEmail()).isEqualTo(customer.getEmail());
             assertThat(c.getAge()).isEqualTo(customer.getAge());
+            assertThat(c.getGender()).isEqualTo(customer.getGender());
         });
     }
 
@@ -80,7 +83,8 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
-                29
+                29,
+                Gender.MALE
         );
         underTest.insertCustomer(customer);
         // When
@@ -96,7 +100,8 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                29
+                29,
+                Gender.MALE
         );
         underTest.insertCustomer(customer);
         int customerId = underTest.selectAllCustomers()
@@ -118,6 +123,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
             assertThat(c.getName()).isEqualTo(newName);
             assertThat(c.getEmail()).isEqualTo(customer.getEmail());
             assertThat(c.getAge()).isEqualTo(customer.getAge());
+            assertThat(c.getGender()).isEqualTo(customer.getGender());
         });
     }
 
@@ -128,7 +134,8 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                29
+                29,
+                Gender.MALE
         );
         underTest.insertCustomer(customer);
         int customerId = underTest.selectAllCustomers()
@@ -145,9 +152,10 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         Optional<Customer> actualCustomer = underTest.selectCustomerById(customerId);
         assertThat(actualCustomer).isPresent().hasValueSatisfying(c -> {
             assertThat(c.getId()).isEqualTo(customerId);
-            assertThat(c.getAge()).isEqualTo(customer.getAge());
             assertThat(c.getName()).isEqualTo(customer.getName());
             assertThat(c.getEmail()).isEqualTo(customer.getEmail());
+            assertThat(c.getAge()).isEqualTo(customer.getAge());
+            assertThat(c.getGender()).isEqualTo(customer.getGender());
         });
     }
 
@@ -158,7 +166,8 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                29
+                29,
+                Gender.MALE
         );
         underTest.insertCustomer(customer);
         int customerId = underTest.selectAllCustomers()
@@ -181,7 +190,8 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                29
+                29,
+                Gender.MALE
         );
         underTest.insertCustomer(customer);
         int customerId = underTest.selectAllCustomers()
@@ -214,7 +224,8 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
         Customer customer = new Customer(
                 name,
                 email,
-                29
+                29,
+                Gender.MALE
         );
         underTest.insertCustomer(customer);
         // When
