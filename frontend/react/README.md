@@ -48,3 +48,18 @@
   Resource, the Browser blocks the Request and returns an CORS Error
 - The CORS Mechanism is important because it prevents malicious Websites from stealing sensitive Information or
   performing Actions on behalf of a User on another Website
+
+## Formik (Form Validation)
+
+- Formik keeps Track of Values, Errors, Fields visited, orchestrates Validation and handles Submission
+- This means less Time is spent on wiring State and Change Handlers and more Time is used to focus on Business Logic
+- It keeps the Form State inherently local and ephemeral to the Component, and does not use external State Management
+  Libraries
+- This also makes Formik easy to deploy incrementally and keeps Bundle Size to a Minimum
+- Yup is used to build Validation Schemas
+
+### Yup (Schema Builder)
+
+- Yup is a Schema Builder for Runtime Value Parsing and Validation. 
+- It allows to define a Schema, transform a Value to match it, assert the Form of an existing Value, or both
+- Yup Schemas are highly expressive and allow the Modelling of complex, interdependent Validations or Value Transformations
