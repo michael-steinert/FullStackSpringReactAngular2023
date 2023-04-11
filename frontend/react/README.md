@@ -60,6 +60,14 @@
 
 ### Yup (Schema Builder)
 
-- Yup is a Schema Builder for Runtime Value Parsing and Validation. 
+- Yup is a Schema Builder for Runtime Value Parsing and Validation.
 - It allows to define a Schema, transform a Value to match it, assert the Form of an existing Value, or both
-- Yup Schemas are highly expressive and allow the Modelling of complex, interdependent Validations or Value Transformations
+- Yup Schemas are highly expressive and allow the Modelling of complex, interdependent Validations or Value
+  Transformations
+
+## Docker
+
+| Command                                                      | Description                       |
+|--------------------------------------------------------------|-----------------------------------|
+| docker build ./Dockerfile -t michaelxsteinert/react-frontend | Build a Image from the Dockerfile |
+| docker push michaelxsteinert/react-frontend                  | Push Image into Repository        |
