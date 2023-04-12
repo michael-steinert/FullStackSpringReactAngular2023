@@ -33,10 +33,10 @@ jobs:
       - name: Setup Java 17 Temurin
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: "temurin"
+          java-version: "17"
           # Caching Maven Dependencies on Action Runner
-          cache: 'maven'
+          cache: "maven"
       # Scripts are executed on assigned Action Runner
       - name: Build and run Unit and Integration Tests with Maven
         # Do not display Transfer Progress and run in non-interactive Mode

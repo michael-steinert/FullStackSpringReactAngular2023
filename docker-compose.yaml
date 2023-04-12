@@ -26,17 +26,17 @@ services:
       - database
     restart: unless-stopped
   react-frontend:
-   container_name: react-frontend
-   image: michaelxsteinert/react-frontend
-   build:
-     args:
-       api_base_url: http://localhost:8080
-     context: frontend/react
-   port:
-     - "5173:5173"
-   depends_on:
-     - spring-boot-backend
-   restart: unless-stopped
+    container_name: react-frontend
+    image: michaelxsteinert/react-frontend
+    build:
+      args:
+        api_base_url: http://localhost:8080
+      context: frontend/react
+    ports:
+      - "5173:5173"
+    depends_on:
+      - spring-boot-backend
+    restart: unless-stopped
 networks:
   db-network:
     driver: bridge
