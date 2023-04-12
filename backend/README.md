@@ -60,7 +60,7 @@
 ## Cloud Computing
 
 - Cloud Computing refers to a Network of remote Servers hosted on the Internet that are used to store, manage and process Data, rather than a local Server. These Servers are typically owned and operated by third-party Companies
-- It provides a wide Range of Services, such as Computing, Storage, Databases, Networking, Machine Learning, and more, that can be accessed by Individuals or Organisations over the Internet
+- It provides a wide Range of Services, such as Computing, Storage, Databases, Networking, Machine Learning, and more, that can be accessed by Individuals or Organizations over the Internet
 - It allows Users to access their Data and Applications over the Internet
 - One Benefit of Cloud Computing is Scalability, which means that Users can easily adjust the Amount of Computing Resources, Storage and other Services they use as they need them, without having to invest in expensive Hardware and Infrastructure
 - Cloud Computing also offers high Availability and Reliability, as Data is stored in multiple Locations and can be easily recovered in the Event of a Disaster or Hardware Failure
@@ -72,7 +72,7 @@
   - Amazon S3 (Simple Storage Service),
   - Amazon RDS (Relational Database Service),
   - and Amazon Lambda (a serverless computing platform)
-- AWS offers a Pay-per-Use Pricing Model, which means Users only pay for the Resources they use. This makes it a cost-effective Option for Organisations of all Sizes, from Startups to large Enterprises
+- AWS offers a Pay-per-Use Pricing Model, which means Users only pay for the Resources they use. This makes it a cost-effective Option for Organizations of all Sizes, from Startups to large Enterprises
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/29623199/229475736-831ba9af-7782-4315-903e-3a7842342489.png" alt="AWS_Infrastructure" />
@@ -163,7 +163,7 @@
 - Java Embedded Web Servers are lightweight Web Servers that can be embedded within a Java Application. These Servers provide a convenient Way to develop, test and deploy Web Applications without the Need for a separate Web Server Installation
 - In this Context, Tomcat, Jetty and Undertow are popular Java Embedded Web Servers
   - **Apache Tomcat** is an Open Source Web Server that is widely used for Developing Java Web Applications. Tomcat supports Servlets and JavaServer Pages (JSPs) and provides a simple and lightweight HTTP Server. Tomcat is easy to set up and configure and supports a range of advanced Features such as SSL, Virtual Hosting and Clustering
-  - **Jetty** is an Open Source Web Server and Servlet Container for Java Applications. It is designed to be lightweight and fast, Jetty offers a modular Architecture that allows Users to customise the Server to suit their Needs. Jetty supports WebSocket, SPDY and HTTP/2 Protocols and is widely used in Embedded Applications such as IoT Devices and mobile Applications
+  - **Jetty** is an Open Source Web Server and Servlet Container for Java Applications. It is designed to be lightweight and fast, Jetty offers a modular Architecture that allows Users to customize the Server to suit their Needs. Jetty supports WebSocket, SPDY and HTTP/2 Protocols and is widely used in Embedded Applications such as IoT Devices and mobile Applications
   - **Undertow** is a Web Server designed to be lightweight and flexible. It is also a Component of WildFly Application Server. Undertow supports both Blocking and Non-Blocking I/O and provides an Embedded Servlet Container for deploying web Applications. Undertow is easy to configure and provides excellent Performance even for high-traffic Websites
 
 ### API (Application Programming Interface)
@@ -252,6 +252,24 @@
 - JDBC is an API that defines how a Client can access a Database
 - JDBCTemplates simplifies the Use of JDBC. It executes the JDBC Workflow, leaving the Application Code to generate SQL and extract Results
 - A DataSource Object provides a Way for JDBC Clients to obtain a DBMS (Database Management System) Connection. This DataSource Entry points to a Connection Pool with available Connections to use
+
+### Spring Security
+
+- Spring Security is a Framework that provides Authentication, Authorization, and Protection against common Attacks
+
+#### JWT (JSON Web Token)
+
+- JWT is an open Standard that defines a compact and self-contained Way to securely transfer Information between Parties as a JSON Object
+- The Information in the JWT can be verified and trusted because it is digitally signed. JWTs can be signed using a Secret (using the HMAC Algorithm) or a public/private Key Pair using RSA or ECDSA
+
+##### Authorization
+
+- Authorization is the most common Scenario for using the JWT. Once the User is logged in, each subsequent Request includes the JWT, allowing the User to access Routes, Services and Resources that are permitted with that JWT
+- Single Sign On is a Feature where JWT is widely used today due to its low Overhead and Ability to be easily deployed across Domains
+
+##### Information Exchange
+
+- JWTs are a common Way to securely transfer Information between Parties. Because JWTs can be signed there, the Recipient can be sure that the Senders are who they say they are. And because the Signature is calculated using the Header and Payload of the JWT, it can be verified that the Content has not been tampered with
 
 ## JSON (JavaScript Object Notation)
 

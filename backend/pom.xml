@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="http://maven.apache.org/POM/4.0.0"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
 >
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.0.5</version>
-    <relativePath/>
+    <relativePath />
   </parent>
   <groupId>com.example</groupId>
   <artifactId>spring-boot-backend</artifactId>
@@ -20,6 +20,7 @@
     <java.version>17</java.version>
     <docker.username>michaelxsteinert</docker.username>
     <docker.image.name>spring-boot-backend</docker.image.name>
+    <jwt.version>0.11.5</jwt.version>
   </properties>
   <dependencies>
     <dependency>
@@ -71,10 +72,31 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.testcontainers</groupId>
       <artifactId>postgresql</artifactId>
       <version>1.17.6</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-api</artifactId>
+      <version>${jwt.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-impl</artifactId>
+      <version>${jwt.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-jackson</artifactId>
+      <version>${jwt.version}</version>
+      <scope>runtime</scope>
     </dependency>
   </dependencies>
   <build>
@@ -82,7 +104,8 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <!-- Start and Stop Application during the pre- and pre-integration-test Phase to run Integration Tests -->
+        <!-- Start and Stop Application during the pre- and pre-integration-test Phase to run
+        Integration Tests -->
         <executions>
           <execution>
             <id>pre-integration-test</id>
@@ -92,7 +115,8 @@
             <!-- Using Random Port for Integration Tests -->
             <configuration>
               <arguments>
-                <argument>--server.port=${tomcat.http.port}</argument>
+                <argument>
+                  --server.port=${tomcat.http.port}</argument>
               </arguments>
             </configuration>
           </execution>
@@ -110,7 +134,8 @@
         <configuration>
           <excludes>
             <!-- Exclude Integration Test while running the Unit Tests in seperated Phase -->
-            <exclude>**/*IntegrationTest.java</exclude>
+            <exclude>
+              **/*IntegrationTest.java</exclude>
           </excludes>
         </configuration>
       </plugin>
@@ -118,14 +143,16 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
         <configuration>
-          <classesDirectory>${project.build.outputDirectory}</classesDirectory>
+          <classesDirectory>
+            ${project.build.outputDirectory}</classesDirectory>
           <includes>
             <!-- Include Integration Test after running the Unit Tests in seperated Phase -->
             <include>**/*IntegrationTest.java</include>
           </includes>
           <!-- Using Random Port for Integration Tests -->
           <systemPropertyVariables>
-            <test.server.port>${tomcat.http.port}</test.server.port>
+            <test.server.port>
+              ${tomcat.http.port}</test.server.port>
           </systemPropertyVariables>
         </configuration>
       </plugin>
@@ -142,7 +169,8 @@
             <phase>process-resources</phase>
             <configuration>
               <portNames>
-                <portName>tomcat.http.port</portName>
+                <portName>
+                  tomcat.http.port</portName>
               </portNames>
             </configuration>
           </execution>
@@ -154,7 +182,8 @@
         <version>3.3.1</version>
         <configuration>
           <from>
-            <image>eclipse-temurin:17</image>
+            <image>
+              eclipse-temurin:17</image>
             <platforms>
               <platform>
                 <architecture>arm64</architecture>
@@ -163,7 +192,8 @@
             </platforms>
           </from>
           <to>
-            <image>docker.io/${docker.username}/${docker.image.name}</image>
+            <image>
+              docker.io/${docker.username}/${docker.image.name}</image>
             <tags>
               <tag>latest</tag>
             </tags>
