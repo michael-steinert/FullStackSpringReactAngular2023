@@ -59,7 +59,7 @@ jobs:
         run: |
           echo "Dockerrun.aws.json before Updating Tag"
           cat ../Dockerrun.aws.json
-          sed -i -E 's_(michaelxsteinert/spring-boot-backend:)([^"]*)_\1'${{steps.build-number.outputs.BUILD_NUMBER}}'_' ../Dockerrun.aws.json
+          sed -i -E 's_(${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-backend:)([^"]*)_\1'${{steps.build-number.outputs.BUILD_NUMBER}}'_' ../Dockerrun.aws.json
           echo "Dockerrun.aws.json after Updating Tag"
           cat ../Dockerrun.aws.json
       # Deploy to AWS Elastic Beanstalk
