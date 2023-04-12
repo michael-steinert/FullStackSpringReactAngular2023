@@ -100,6 +100,19 @@
   <img src="https://user-images.githubusercontent.com/29623199/229475736-831ba9af-7782-4315-903e-3a7842342489.png" alt="AWS_Infrastructure" />
 </P>
 
+#### Security Group
+
+- A Security Group controls the Traffic from the Internet (i.e. 0.0.0.0) that can enter and leave the Resources to which it is associated
+- A Security Group that is associated with an EC2 Instance, it controls Traffic inbound to and outbound from that
+  Instance
+- Security Groups can only be associated with Resources in the VPC for which it is created
+- When a VPC is created, it comes with a default Security Group, but it is possible to create additional Security Groups
+  for each VPC
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/29623199/231418699-ae4457da-cf5a-472c-821b-59264a5869e3.png" alt="AWS_Security_Groups" />
+</P>
+
 #### Amazon VPC (Virtual Private Cloud)
 
 - Amazon VPC gives complete Control over the virtual Network Environment, including Resource Placement, Connectivity and

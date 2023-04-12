@@ -67,7 +67,7 @@
 
 ## Docker
 
-| Command                                                      | Description                       |
-|--------------------------------------------------------------|-----------------------------------|
-| docker build ./Dockerfile -t michaelxsteinert/react-frontend | Build a Image from the Dockerfile |
-| docker push michaelxsteinert/react-frontend                  | Push Image into Repository        |
+| Command                                                                                        | Description                       |
+|------------------------------------------------------------------------------------------------|-----------------------------------|
+| docker build ./Dockerfile -t michaelxsteinert/react-frontend --build-arg api_base_url=URL:PORT | Build a Image from the Dockerfile |
+| docker push michaelxsteinert/react-frontend                                                    | Push Image into Repository        |
