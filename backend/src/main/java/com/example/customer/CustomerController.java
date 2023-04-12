@@ -8,37 +8,36 @@ import java.util.List;
 @RequestMapping(path = "api/v1/customers")
 public class CustomerController {
 
-    private final CustomerService customerService;
+  private final CustomerService customerService;
 
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
-    }
+  public CustomerController(CustomerService customerService) {
+    this.customerService = customerService;
+  }
 
-    @GetMapping
-    public List<Customer> getCustomers() {
-        return customerService.getAllCustomers();
-    }
+  @GetMapping
+  public List<Customer> getCustomers() {
+    return customerService.getAllCustomers();
+  }
 
-    @GetMapping(path = "{customerId}")
-    public Customer getCustomer(@PathVariable("customerId") Integer customerId) {
-        return customerService.getCustomer(customerId);
-    }
+  @GetMapping(path = "{customerId}")
+  public Customer getCustomer(@PathVariable("customerId") Integer customerId) {
+    return customerService.getCustomer(customerId);
+  }
 
-    @PostMapping
-    public void addCustomer(@RequestBody CustomerRegistrationRequest customerRegistrationRequest) {
-        customerService.addCustomer(customerRegistrationRequest);
-    }
+  @PostMapping
+  public void addCustomer(@RequestBody CustomerRegistrationRequest customerRegistrationRequest) {
+    customerService.addCustomer(customerRegistrationRequest);
+  }
 
-    @PutMapping(path = "{customerId}")
-    public void updateCustomer(
-            @PathVariable("customerId") Integer customerId,
-            @RequestBody CustomerUpdateRequest customerUpdateRequest
-    ) {
-        customerService.updateCustomer(customerId, customerUpdateRequest);
-    }
+  @PutMapping(path = "{customerId}")
+  public void updateCustomer(
+      @PathVariable("customerId") Integer customerId,
+      @RequestBody CustomerUpdateRequest customerUpdateRequest) {
+    customerService.updateCustomer(customerId, customerUpdateRequest);
+  }
 
-    @DeleteMapping(path = "{customerId}")
-    public void removeCustomer(@PathVariable("customerId") Integer customerId) {
-        customerService.removeCustomer(customerId);
-    }
+  @DeleteMapping(path = "{customerId}")
+  public void removeCustomer(@PathVariable("customerId") Integer customerId) {
+    customerService.removeCustomer(customerId);
+  }
 }

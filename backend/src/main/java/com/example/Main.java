@@ -15,27 +15,26 @@ import java.util.Random;
 
 @SpringBootApplication
 public class Main {
-    public static void main(String[] args) {
-        ConfigurableApplicationContext applicationContext = SpringApplication.run(Main.class, args);
-    }
+  public static void main(String[] args) {
+    ConfigurableApplicationContext applicationContext = SpringApplication.run(Main.class, args);
+  }
 
-    @Bean
-    CommandLineRunner runner(CustomerRepository customerRepository) {
-        return args -> {
-            var faker = new Faker();
-            Random random = new Random();
-            Name name = faker.name();
-            String firstName = name.firstName();
-            String lastName = name.lastName();
-            int age = random.nextInt(16, 99);
-            Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
-            Customer customer = new Customer(
-                    firstName + " " + lastName,
-                    firstName.toLowerCase() + "." + lastName.toLowerCase() + "@mail.com",
-                    age,
-                    gender
-            );
-            customerRepository.save(customer);
-        };
-    }
+  @Bean
+  CommandLineRunner runner(CustomerRepository customerRepository) {
+    return args -> {
+      var faker = new Faker();
+      Random random = new Random();
+      Name name = faker.name();
+      String firstName = name.firstName();
+      String lastName = name.lastName();
+      int age = random.nextInt(16, 99);
+      Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
+      Customer customer = new Customer(
+          firstName + " " + lastName,
+          firstName.toLowerCase() + "." + lastName.toLowerCase() + "@mail.com",
+          age,
+          gender);
+      customerRepository.save(customer);
+    };
+  }
 }
