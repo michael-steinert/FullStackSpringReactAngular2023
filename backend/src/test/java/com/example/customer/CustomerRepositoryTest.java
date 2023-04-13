@@ -32,6 +32,7 @@ class CustomerRepositoryTest extends SetupTestcontainersSuite {
     Customer customer = new Customer(
         FAKER.name().fullName(),
         email,
+        "password",
         29,
         Gender.MALE);
     underTest.save(customer);
@@ -64,6 +65,7 @@ class CustomerRepositoryTest extends SetupTestcontainersSuite {
     Customer customer = new Customer(
         FAKER.name().fullName(),
         email,
+        "password",
         29,
         Gender.MALE);
     underTest.save(customer);

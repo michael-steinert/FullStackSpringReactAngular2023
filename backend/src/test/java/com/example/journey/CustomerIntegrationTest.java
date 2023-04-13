@@ -36,9 +36,11 @@ public class CustomerIntegrationTest {
     Name fakerName = faker.name();
     String name = fakerName.fullName();
     String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@mail.com";
+    String password = "password";
     int age = RANDOM.nextInt(1, 100);
     Gender gender = Gender.MALE;
-    CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(name, email, age, gender);
+    CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(name, email,
+        password, age, gender);
     // Send a Post Request to create a Customer
     webTestClient.post()
         .uri(CUSTOMER_URI)
@@ -60,7 +62,7 @@ public class CustomerIntegrationTest {
         .returnResult()
         .getResponseBody();
     // Checking that expected Customer is present
-    Customer expectedCustomer = new Customer(name, email, age, gender);
+    Customer expectedCustomer = new Customer(name, email, password, age, gender);
     assertThat(customers)
         .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
         .contains(expectedCustomer);
@@ -89,9 +91,10 @@ public class CustomerIntegrationTest {
     Name fakerName = faker.name();
     String name = fakerName.fullName();
     String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@mail.com";
+    String password = "password";
     int age = RANDOM.nextInt(1, 100);
     Gender gender = Gender.MALE;
-    CustomerRegistrationRequest request = new CustomerRegistrationRequest(name, email, age, gender);
+    CustomerRegistrationRequest request = new CustomerRegistrationRequest(name, email, password, age, gender);
     // Send a Post Request to create a Customer
     webTestClient.post()
         .uri(CUSTOMER_URI)
@@ -124,6 +127,7 @@ public class CustomerIntegrationTest {
         newName,
         null,
         null,
+        null,
         null);
     // Send a Put Request to update Customer
     webTestClient.put()
@@ -144,7 +148,7 @@ public class CustomerIntegrationTest {
         .expectBody(Customer.class)
         .returnResult()
         .getResponseBody();
-    Customer expectedCustomer = new Customer(customerId, newName, email, age, gender);
+    Customer expectedCustomer = new Customer(customerId, newName, email, password, age, gender);
     assertThat(updatedCustomer).isEqualTo(expectedCustomer);
   }
 
@@ -155,9 +159,10 @@ public class CustomerIntegrationTest {
     Name fakerName = faker.name();
     String name = fakerName.fullName();
     String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@mail.com";
+    String password = "password";
     int age = RANDOM.nextInt(1, 100);
     Gender gender = Gender.MALE;
-    CustomerRegistrationRequest request = new CustomerRegistrationRequest(name, email, age, gender);
+    CustomerRegistrationRequest request = new CustomerRegistrationRequest(name, email, password, age, gender);
     // Send a Post Request to create a Customer
     webTestClient.post()
         .uri(CUSTOMER_URI)

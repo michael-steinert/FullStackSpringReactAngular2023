@@ -27,6 +27,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     Customer customer = new Customer(
         FAKER.name().fullName(),
         FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
+        "password",
         29,
         Gender.MALE);
     underTest.insertCustomer(customer);
@@ -43,6 +44,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     Customer customer = new Customer(
         FAKER.name().fullName(),
         email,
+        "password",
         29,
         Gender.MALE);
     underTest.insertCustomer(customer);
@@ -80,6 +82,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     Customer customer = new Customer(
         FAKER.name().fullName(),
         FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID(),
+        "password",
         29,
         Gender.MALE);
     underTest.insertCustomer(customer);
@@ -96,6 +99,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     Customer customer = new Customer(
         FAKER.name().fullName(),
         email,
+        "password",
         29,
         Gender.MALE);
     underTest.insertCustomer(customer);
@@ -129,6 +133,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     Customer customer = new Customer(
         FAKER.name().fullName(),
         email,
+        "password",
         29,
         Gender.MALE);
     underTest.insertCustomer(customer);
@@ -160,6 +165,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     Customer customer = new Customer(
         FAKER.name().fullName(),
         email,
+        "password",
         29,
         Gender.MALE);
     underTest.insertCustomer(customer);
@@ -183,6 +189,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     Customer customer = new Customer(
         FAKER.name().fullName(),
         email,
+        "password",
         29,
         Gender.MALE);
     underTest.insertCustomer(customer);
@@ -216,6 +223,7 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     Customer customer = new Customer(
         name,
         email,
+        "password",
         29,
         Gender.MALE);
     underTest.insertCustomer(customer);

@@ -52,6 +52,7 @@ class CustomerJpaDataAccessServiceTest {
         1,
         "Bruno",
         "bruno@mail.com",
+        "password",
         14,
         Gender.MALE);
     // When
@@ -67,6 +68,7 @@ class CustomerJpaDataAccessServiceTest {
         1,
         "Bruno",
         "bruno@mail.com",
+        "password",
         14,
         Gender.MALE);
     // When

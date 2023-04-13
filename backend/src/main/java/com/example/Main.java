@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Random;
 
@@ -20,7 +21,7 @@ public class Main {
   }
 
   @Bean
-  CommandLineRunner runner(CustomerRepository customerRepository) {
+  CommandLineRunner runner(CustomerRepository customerRepository, PasswordEncoder passwordEncoder) {
     return args -> {
       var faker = new Faker();
       Random random = new Random();
@@ -32,6 +33,7 @@ public class Main {
       Customer customer = new Customer(
           firstName + " " + lastName,
           firstName.toLowerCase() + "." + lastName.toLowerCase() + "@mail.com",
+          passwordEncoder.encode("password"),
           age,
           gender);
       customerRepository.save(customer);

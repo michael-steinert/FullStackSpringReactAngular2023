@@ -232,7 +232,7 @@
 
 - JPA is a Java Specification that provides a Set of Interfaces and Annotations for mapping Java Objects to relational Databases
 - JPA provides a high-level, Object-relational Mapping (ORM) API that allows Developers to interact with a Database using Java Objects. With JPA, Developers can define Mappings between Java Classes and Database Tables, and can perform CRUD (Create, Read, Update, Delete) Operations on those Objects using a simple API
-- JPA also supports advanced Features such as Lazy Loading, Caching, and Transactions, making it a powerful and flexible Tool for working with Relational Databases in Java Applications. In addition, JPA is Database-agnostic, which means that it can be used with any Relational Database that has a JDBC (Java Database Connectivity) Driver
+- JPA also supports advanced Features such as Lazy Loading, Caching, and Transactions, making it a powerful and flexible Tool for working with Relational Databases in Java Applications. In addition, JPA is Database-agnostic, which means that it can be used with any Relational Database that has a Jdbc (Java Database Connectivity) Driver
 
 #### PSQL Commands
 
@@ -247,15 +247,25 @@
 | \c                                                                                                                                                              | Connect to a Database       |
 | \dt                                                                                                                                                             | List Tables of Database     |
 
-#### JDBC (Java Database Connectivity) Template
+#### Jdbc (Java Database Connectivity) Template
 
-- JDBC is an API that defines how a Client can access a Database
-- JDBCTemplates simplifies the Use of JDBC. It executes the JDBC Workflow, leaving the Application Code to generate SQL and extract Results
-- A DataSource Object provides a Way for JDBC Clients to obtain a DBMS (Database Management System) Connection. This DataSource Entry points to a Connection Pool with available Connections to use
+- Jdbc is an API that defines how a Client can access a Database
+- JdbcTemplates simplifies the Use of Jdbc. It executes the Jdbc Workflow, leaving the Application Code to generate SQL and extract Results
+- A DataSource Object provides a Way for Jdbc Clients to obtain a DBMS (Database Management System) Connection. This DataSource Entry points to a Connection Pool with available Connections to use
 
 ### Spring Security
 
 - Spring Security is a Framework that provides Authentication, Authorization, and Protection against common Attacks
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/29623199/231731914-710262ce-00ec-41cb-8630-491543264722.png" alt="Spring_Security" />
+</P>
+
+#### Security Filter Chain
+
+- The Client sends a Request to the Application, and the Container (i.e. a Component that can contain other Components inside itself) creates a FilterChain containing the Filter Instances and Servlet that should process the HttpServletRequest based on the Path of the request URI
+- In a Spring MVC Application, the Servlet is an Instance of DispatcherServlet
+- A Servlet can only handle a single HttpServletRequest and HttpServletResponse, mut more than one Filter can be used in a Chain
 
 #### JWT (JSON Web Token)
 
