@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -37,6 +38,26 @@ public class JwtUtil {
         .setExpiration(Date.from(Instant.now().plus(14, ChronoUnit.DAYS)))
         .signWith(getSigningKey(), SignatureAlgorithm.HS256)
         .compact();
+  }
+
+  public String getSubject(String jwt) {
+    return getClaims(jwt).getSubject();
+  }
+
+  public boolean isJwtValid(String jwt, String username) {
+    return getSubject(jwt).equals(username) && !isJwtExpired(jwt);
+  }
+
+  private boolean isJwtExpired(String jwt) {
+    return getClaims(jwt).getExpiration().before(Date.from(Instant.now()));
+  }
+
+  private Claims getClaims(String jwt) {
+    return Jwts.parserBuilder()
+        .setSigningKey(getSigningKey())
+        .build()
+        .parseClaimsJws(jwt)
+        .getBody();
   }
 
   private Key getSigningKey() {

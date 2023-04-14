@@ -261,11 +261,18 @@
   <img src="https://user-images.githubusercontent.com/29623199/231731914-710262ce-00ec-41cb-8630-491543264722.png" alt="Spring_Security" />
 </P>
 
+- AuthenticationManager is the API that defines how Spring Security's Filters perform Authentication
+- ProviderManager is the most commonly used Implementation of the AuthenticationManager. It can choose between different AuthenticationProviders such as for Username and Password or Remember Me (JWT) for Authentication
+
 #### Security Filter Chain
 
 - The Client sends a Request to the Application, and the Container (i.e. a Component that can contain other Components inside itself) creates a FilterChain containing the Filter Instances and Servlet that should process the HttpServletRequest based on the Path of the request URI
 - In a Spring MVC Application, the Servlet is an Instance of DispatcherServlet
 - A Servlet can only handle a single HttpServletRequest and HttpServletResponse, mut more than one Filter can be used in a Chain
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/29623199/232000181-89de4188-db19-438b-9c4f-bc1c4dc7ab30.png" alt="Security_Filter_Chain" />
+</P>
 
 #### JWT (JSON Web Token)
 
