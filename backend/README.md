@@ -344,3 +344,10 @@
 - Testcontainers facilitate the following Types of Testing:
   - **Data Access Layer Integration Testing**: use a containerized Instance of a MySQL, PostgreSQL or Oracle Database to test the Data Access Layer Code for full Compatibility -**Application Integration Testing**: run the Application in a short-lived Test Mode with Dependencies such as Databases, Message Queues or Web Servers
   - **UI/Acceptance Testing**: use containerized Web Browsers compatible with Selenium to run automated UI Tests
+
+## DTO (Data Transfer Object) Pattern
+
+- DTOs are Objects that carry Data between Processes to reduce the Number of Method Calls
+- DTOs are flat Data Structures that contain no Business Logic. They only contain Storage, Accessors and possibly Methods related to Serialization or Parsing
+- A Mapper Component is used to transfer the Data, ensuring that the DTO and Domain Model (i.e. Entity) do not need to know about each other
+- By using DTOs, the System Structure is not exposed to the Client because the Client only gets the Information in the DTO that it needs. This allows different Views of the System to be built

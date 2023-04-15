@@ -25,10 +25,12 @@ class CustomerServiceTest {
   @Mock
   private PasswordEncoder passwordEncoder;
   private CustomerService underTest;
+  // No Need for Mock because it is a trivial Implementation
+  private final CustomerDtoMapper customerDtoMapper = new CustomerDtoMapper();
 
   @BeforeEach
   void setUp() {
-    underTest = new CustomerService(customerDao, passwordEncoder);
+    underTest = new CustomerService(customerDao, passwordEncoder, customerDtoMapper);
   }
 
   @Test
@@ -51,10 +53,11 @@ class CustomerServiceTest {
         14,
         Gender.MALE);
     when(customerDao.selectCustomerById(customerId)).thenReturn(Optional.of(customer));
+    CustomerDto expectedCustomer = customerDtoMapper.apply(customer);
     // When
-    Customer actualCustomer = underTest.getCustomer(customerId);
+    CustomerDto actualCustomer = underTest.getCustomer(customerId);
     // Then
-    assertThat(actualCustomer).isEqualTo(customer);
+    assertThat(actualCustomer).isEqualTo(expectedCustomer);
   }
 
   @Test
