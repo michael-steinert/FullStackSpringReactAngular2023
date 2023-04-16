@@ -4,6 +4,7 @@ import java.security.Key;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
@@ -23,7 +24,14 @@ public class JwtUtil {
     return issueJwtToken(subject, Map.of());
   }
 
+  // Passing Roles as Array
   public String issueJwtToken(String subject, String... scopes) {
+    // Scopes represent the Roles of the User
+    return issueJwtToken(subject, Map.of("scopes", scopes));
+  }
+
+  // Passing Roles as List
+  public String issueJwtToken(String subject, List<String> scopes) {
     // Scopes represent the Roles of the User
     return issueJwtToken(subject, Map.of("scopes", scopes));
   }

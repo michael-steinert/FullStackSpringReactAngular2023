@@ -2,7 +2,6 @@ server:
   port: 8080
   error:
     include-message: always
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/customer
@@ -22,3 +21,5 @@ spring:
 cors:
   allowed-origins: "*"
   allowed-methods: "*"
+  allowed-headers: "*"
+  exposed-headers: "*"

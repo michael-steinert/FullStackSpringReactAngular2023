@@ -1,8 +1,9 @@
 package com.example.jwt;
 
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
+
 import java.io.IOException;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       HttpServletResponse response,
       FilterChain filterChain)
       throws ServletException, IOException {
-    String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+    String authorizationHeader = request.getHeader(AUTHORIZATION);
     if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
       // Reject Request and continue with Filter Chain
       filterChain.doFilter(request, response);
