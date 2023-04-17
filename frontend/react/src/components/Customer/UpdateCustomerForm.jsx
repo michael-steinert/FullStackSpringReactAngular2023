@@ -1,5 +1,3 @@
-import { Form, Formik, useField } from "formik";
-import * as Yup from "yup";
 import {
   Alert,
   AlertIcon,
@@ -9,6 +7,8 @@ import {
   Input,
   Stack,
 } from "@chakra-ui/react";
+import { Form, Formik, useField } from "formik";
+import * as Yup from "yup";
 import { updateCustomer } from "../services/client.js";
 import {
   errorNotification,
@@ -43,6 +43,7 @@ export default function UpdateCustomerForm({
     <>
       <Formik
         initialValues={initialValues}
+        validateOnMount={true}
         validationSchema={Yup.object({
           name: Yup.string()
             .max(15, "Must be 15 Characters or less")
@@ -55,30 +56,31 @@ export default function UpdateCustomerForm({
             .max(100, "Must be less than 100 Years of Age")
             .required(),
         })}
-        onSubmit={(customerFormValues, { setSubmitting }) => {
-          setSubmitting(true);
-          updateCustomer(customerId, customerFormValues)
-            .then((response) => {
-              console.log(response);
-              successNotification(
-                "Customer updated",
-                `${customerFormValues.name} was successfully updated`
-              );
-              // Fetch Customers after one was updated
-              fetchCustomers();
-            })
-            .catch((error) => {
-              console.error(error);
-              errorNotification(error.code, error.response.data.message);
-            })
-            .finally(() => {
-              setSubmitting(false);
-            });
+        onSubmit={async (customerFormValues, { setSubmitting }) => {
+          try {
+            setSubmitting(true);
+            const response = await updateCustomer(
+              customerId,
+              customerFormValues
+            );
+            console.log(response);
+            successNotification(
+              "Customer updated",
+              `${customerFormValues.name} was successfully updated`
+            );
+            // Fetch Customers after one was updated
+            fetchCustomers();
+          } catch (error) {
+            console.error(error);
+            errorNotification(error.code, error.response.data.message);
+          } finally {
+            setSubmitting(false);
+          }
         }}
       >
         {({ isValid, isSubmitting, dirty }) => (
           <Form>
-            <Stack spacing={"24px"}>
+            <Stack spacing="24px">
               <CustomTextInput
                 label="Name"
                 name="name"

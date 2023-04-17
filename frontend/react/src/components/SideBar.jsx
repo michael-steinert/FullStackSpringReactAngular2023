@@ -30,6 +30,7 @@ import {
   FiStar,
   FiTrendingUp,
 } from "react-icons/fi";
+import { useAuthentication } from "../context/AuthenticationContext";
 
 const LinkItems = [
   { name: "Home", icon: FiHome },
@@ -69,84 +70,82 @@ export default function SidebarWithHeader({ children }) {
   );
 }
 
-const SidebarContent = ({ onClose, ...rest }) => {
-  return (
-    <Box
-      transition="3s ease"
-      bg={useColorModeValue("white", "gray.900")}
-      borderRight="1px"
-      borderRightColor={useColorModeValue("gray.200", "gray.700")}
-      w={{ base: "full", md: 60 }}
-      pos="fixed"
-      h="full"
+const SidebarContent = ({ onClose, ...rest }) => (
+  <Box
+    transition="3s ease"
+    bg={useColorModeValue("white", "gray.900")}
+    borderRight="1px"
+    borderRightColor={useColorModeValue("gray.200", "gray.700")}
+    w={{ base: "full", md: 60 }}
+    pos="fixed"
+    h="full"
+    {...rest}
+  >
+    <Flex
+      h="20"
+      flexDirection="column"
+      alignItems="center"
+      mx="8"
+      mb={75}
+      mt={2}
+      justifyContent="space-between"
+    >
+      <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold" mb={5}>
+        Dashboard
+      </Text>
+      <Image
+        borderRadius="full"
+        boxSize="75px"
+        src="https://user-images.githubusercontent.com/29623199/230716141-af8e3485-a6d8-41be-bcc8-82eb23209f08.png"
+        alt="Background Image"
+      />
+      <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
+    </Flex>
+    {LinkItems.map((link) => (
+      <NavItem key={link.name} icon={link.icon}>
+        {link.name}
+      </NavItem>
+    ))}
+  </Box>
+);
+
+const NavItem = ({ icon, children, ...rest }) => (
+  <Link
+    href="frontend/react/src/components/#"
+    style={{ textDecoration: "none" }}
+    _focus={{ boxShadow: "none" }}
+  >
+    <Flex
+      align="center"
+      p="4"
+      mx="4"
+      borderRadius="lg"
+      role="group"
+      cursor="pointer"
+      _hover={{
+        bg: "red.400",
+        color: "white",
+      }}
       {...rest}
     >
-      <Flex
-        h="20"
-        flexDirection="column"
-        alignItems="center"
-        mx="8"
-        mb={75}
-        mt={2}
-        justifyContent="space-between"
-      >
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold" mb={5}>
-          Dashboard
-        </Text>
-        <Image
-          borderRadius="full"
-          boxSize="75px"
-          src="https://user-images.githubusercontent.com/29623199/230716141-af8e3485-a6d8-41be-bcc8-82eb23209f08.png"
-          alt="React Chakra"
+      {icon && (
+        <Icon
+          mr="4"
+          fontSize="16"
+          _groupHover={{
+            color: "white",
+          }}
+          as={icon}
         />
-        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
-      </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
-        </NavItem>
-      ))}
-    </Box>
-  );
-};
-
-const NavItem = ({ icon, children, ...rest }) => {
-  return (
-    <Link
-      href="frontend/react/src/components/#"
-      style={{ textDecoration: "none" }}
-      _focus={{ boxShadow: "none" }}
-    >
-      <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: "red.400",
-          color: "white",
-        }}
-        {...rest}
-      >
-        {icon && (
-          <Icon
-            mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: "white",
-            }}
-            as={icon}
-          />
-        )}
-        {children}
-      </Flex>
-    </Link>
-  );
-};
+      )}
+      {children}
+    </Flex>
+  </Link>
+);
 
 const MobileNav = ({ onOpen, ...rest }) => {
+  const { customer, logout } = useAuthentication();
+
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -166,7 +165,6 @@ const MobileNav = ({ onOpen, ...rest }) => {
         aria-label="open menu"
         icon={<FiMenu />}
       />
-
       <Text
         display={{ base: "flex", md: "none" }}
         fontSize="2xl"
@@ -175,15 +173,14 @@ const MobileNav = ({ onOpen, ...rest }) => {
       >
         Logo
       </Text>
-
       <HStack spacing={{ base: "0", md: "6" }}>
         <IconButton
           size="lg"
           variant="ghost"
-          aria-label="open menu"
+          aria-label="Open Menu"
           icon={<FiBell />}
         />
-        <Flex alignItems={"center"}>
+        <Flex alignItems="center">
           <Menu>
             <MenuButton
               py={2}
@@ -192,7 +189,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
             >
               <HStack>
                 <Avatar
-                  size={"sm"}
+                  size="sm"
                   src={
                     "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
                   }
@@ -203,10 +200,12 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">Justina Clark</Text>
-                  <Text fontSize="xs" color="gray.600">
-                    Admin
-                  </Text>
+                  <Text fontSize="sm">{customer?.username}</Text>
+                  {customer?.roles.map((role, index) => (
+                    <Text fontSize="xs" color="gray.600" key={index}>
+                      {role}
+                    </Text>
+                  ))}
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>
                   <FiChevronDown />
@@ -219,9 +218,8 @@ const MobileNav = ({ onOpen, ...rest }) => {
             >
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem>
               <MenuDivider />
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem onClick={logout}>Sign out</MenuItem>
             </MenuList>
           </Menu>
         </Flex>

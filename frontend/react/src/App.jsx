@@ -15,20 +15,18 @@ const App = () => {
     fetchCustomers();
   }, []);
 
-  const fetchCustomers = () => {
+  const fetchCustomers = async () => {
     setIsLoading(true);
-    getCustomers()
-      .then((response) => {
-        setCustomers(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-        errorNotification(error.code, error.response.data.message);
-        setIsLoading(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    try {
+      const response = await getCustomers();
+      setCustomers(response.data);
+    } catch (error) {
+      console.error(error);
+      errorNotification(error.code, error.response.data.message);
+      setIsLoading(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (isLoading) {

@@ -39,23 +39,21 @@ export default function CardWithImage({
   const cancelRef = useRef();
   const randomUserGender = gender === "MALE" ? "men" : "women";
 
-  const handleDeleteCustomer = () => {
-    deleteCustomer(id)
-      .then((response) => {
-        console.log(response);
-        successNotification(
-          "Customer deleted",
-          `${name} was successfully deleted`
-        );
-        fetchCustomers();
-      })
-      .catch((error) => {
-        console.error(error);
-        errorNotification(error.code, error.response.data.message);
-      })
-      .finally(() => {
-        onClose();
-      });
+  const handleDeleteCustomer = async () => {
+    try {
+      const response = await deleteCustomer(id);
+      console.log(response);
+      successNotification(
+        "Customer deleted",
+        `${name} was successfully deleted`
+      );
+      fetchCustomers();
+    } catch (error) {
+      console.error(error);
+      errorNotification(error.code, error.response.data.message);
+    } finally {
+      onClose();
+    }
   };
 
   return (
