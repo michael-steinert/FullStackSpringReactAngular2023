@@ -1,23 +1,17 @@
-import {
-  Flex,
-  Heading,
-  Image,
-  Link,
-  Stack
-} from "@chakra-ui/react";
+import { Flex, Heading, Image, Link, Stack } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthentication } from "../../context/AuthenticationContext";
 import CreateCustomerForm from "../Customer/CreateCustomerForm.jsx";
 
-export default function Register() {
+const Register = () => {
   const { customer, setCustomerFromJwt } = useAuthentication();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (customer) {
       // If Customer is present, then redirect to Dashboard
-      navigate("/dashboard");
+      navigate("/dashboard/customers");
     }
   }, []);
 
@@ -33,7 +27,7 @@ export default function Register() {
               // Save JWT into Local Storage
               localStorage.setItem("access-token", jwt);
               setCustomerFromJwt();
-              navigate("/dashboard");
+              navigate("/dashboard/customers");
             }}
           />
           <Link href="/" color="blue.500">
@@ -62,4 +56,6 @@ export default function Register() {
       </Flex>
     </Stack>
   );
-}
+};
+
+export default Register;

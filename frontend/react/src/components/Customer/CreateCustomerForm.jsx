@@ -50,7 +50,7 @@ const CustomSelect = ({ label, ...props }) => {
   );
 };
 
-export default function CreateCustomerForm({ onCreatedCustomer }) {
+const CreateCustomerForm = ({ onCreatedCustomer }) => {
   return (
     <Formik
       initialValues={{
@@ -134,4 +134,6 @@ export default function CreateCustomerForm({ onCreatedCustomer }) {
       )}
     </Formik>
   );
-}
+};
+
+export default CreateCustomerForm;

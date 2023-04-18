@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthentication } from "../context/AuthenticationContext";
 
-export default function ProtectedRoute({ children }) {
+const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
   const { isCustomerAuthenticated } = useAuthentication();
 
@@ -13,4 +13,6 @@ export default function ProtectedRoute({ children }) {
   });
 
   return isCustomerAuthenticated() ? children : null;
-}
+};
+
+export default ProtectedRoute;

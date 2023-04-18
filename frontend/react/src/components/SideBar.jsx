@@ -23,24 +23,20 @@ import {
 import {
   FiBell,
   FiChevronDown,
-  FiCompass,
   FiHome,
   FiMenu,
   FiSettings,
-  FiStar,
-  FiTrendingUp,
+  FiUsers,
 } from "react-icons/fi";
 import { useAuthentication } from "../context/AuthenticationContext";
 
 const LinkItems = [
-  { name: "Home", icon: FiHome },
-  { name: "Trending", icon: FiTrendingUp },
-  { name: "Explore", icon: FiCompass },
-  { name: "Favourites", icon: FiStar },
-  { name: "Settings", icon: FiSettings },
+  { name: "Home", route: "/dashboard", icon: FiHome },
+  { name: "Customers", route: "/dashboard/customers", icon: FiUsers },
+  { name: "Settings", route: "/dashboard/settings", icon: FiSettings },
 ];
 
-export default function SidebarWithHeader({ children }) {
+const SidebarWithHeader = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
@@ -68,7 +64,7 @@ export default function SidebarWithHeader({ children }) {
       </Box>
     </Box>
   );
-}
+};
 
 const SidebarContent = ({ onClose, ...rest }) => (
   <Box
@@ -102,16 +98,16 @@ const SidebarContent = ({ onClose, ...rest }) => (
       <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
     </Flex>
     {LinkItems.map((link) => (
-      <NavItem key={link.name} icon={link.icon}>
+      <NavItem key={link.name} route={link.route} icon={link.icon}>
         {link.name}
       </NavItem>
     ))}
   </Box>
 );
 
-const NavItem = ({ icon, children, ...rest }) => (
+const NavItem = ({ icon, route, children, ...rest }) => (
   <Link
-    href="frontend/react/src/components/#"
+    href={route}
     style={{ textDecoration: "none" }}
     _focus={{ boxShadow: "none" }}
   >
@@ -227,3 +223,5 @@ const MobileNav = ({ onOpen, ...rest }) => {
     </Flex>
   );
 };
+
+export default SidebarWithHeader;

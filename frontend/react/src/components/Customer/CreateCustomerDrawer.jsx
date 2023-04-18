@@ -15,7 +15,7 @@ const AddIcon = () => "+";
 
 const CloseIcon = () => "x";
 
-export default function CreateCustomerDrawer({ fetchCustomers }) {
+const CreateCustomerDrawer = ({ fetchCustomers }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -43,4 +43,6 @@ export default function CreateCustomerDrawer({ fetchCustomers }) {
       </Drawer>
     </>
   );
-}
+};
+
+export default CreateCustomerDrawer;

@@ -33,7 +33,7 @@ const CustomTextInput = ({ label, ...props }) => {
   );
 };
 
-function LoginForm() {
+const LoginForm = () => {
   const { login } = useAuthentication();
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ function LoginForm() {
         try {
           await login(values);
           // After successful Login redirect Customer to Dashboard
-          navigate("/dashboard");
+          navigate("/dashboard/customers");
         } catch (error) {
           errorNotification(error.code, error.response.data.message);
         } finally {
@@ -76,9 +76,9 @@ function LoginForm() {
       )}
     </Formik>
   );
-}
+};
 
-export default function Login() {
+const Login = () => {
   const { customer } = useAuthentication();
   const navigate = useNavigate();
 
@@ -97,7 +97,9 @@ export default function Login() {
             Sign in to Account
           </Heading>
           <LoginForm />
-          <Link href="/register" color="blue.500">Register an Account</Link>
+          <Link href="/register" color="blue.500">
+            Register an Account
+          </Link>
         </Stack>
       </Flex>
       <Flex
@@ -121,4 +123,6 @@ export default function Login() {
       </Flex>
     </Stack>
   );
-}
+};
+
+export default Login;

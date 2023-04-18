@@ -2,7 +2,8 @@ import { ChakraProvider, createStandaloneToast } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import App from "./App";
+import Customer from "./Customer";
+import Home from "./Home";
 import Login from "./components/Login/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Register from "./components/Register/Register";
@@ -25,7 +26,15 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <ProtectedRoute>
-        <App />
+        <Home />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "dashboard/customers",
+    element: (
+      <ProtectedRoute>
+        <Customer />
       </ProtectedRoute>
     ),
   },

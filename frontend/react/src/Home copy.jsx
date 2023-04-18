@@ -1,12 +1,12 @@
 import { Spinner, Text, Wrap, WrapItem } from "@chakra-ui/react";
-import SidebarWithHeader from "./components/SideBar.jsx";
-import { getCustomers } from "./services/client.js";
 import { useEffect, useState } from "react";
 import CardWithImage from "./components/Card.jsx";
 import CreateCustomerDrawer from "./components/CreateCustomerDrawer.jsx";
+import SidebarWithHeader from "./components/SideBar.jsx";
+import { getCustomers } from "./services/client.js";
 import { errorNotification } from "./services/notification.js";
 
-const App = () => {
+const Home = () => {
   const [customers, setCustomers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -73,4 +73,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;

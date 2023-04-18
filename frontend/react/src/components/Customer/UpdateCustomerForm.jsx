@@ -9,11 +9,11 @@ import {
 } from "@chakra-ui/react";
 import { Form, Formik, useField } from "formik";
 import * as Yup from "yup";
-import { updateCustomer } from "../services/client.js";
+import { updateCustomer } from "../../services/client.js";
 import {
   errorNotification,
   successNotification,
-} from "../services/notification.js";
+} from "../../services/notification.js";
 
 const CustomTextInput = ({ label, ...props }) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()] which can be spread on <input>
@@ -34,11 +34,7 @@ const CustomTextInput = ({ label, ...props }) => {
   );
 };
 
-export default function UpdateCustomerForm({
-  fetchCustomers,
-  customerId,
-  initialValues,
-}) {
+const UpdateCustomerForm = ({ fetchCustomers, customerId, initialValues }) => {
   return (
     <>
       <Formik
@@ -111,4 +107,6 @@ export default function UpdateCustomerForm({
       </Formik>
     </>
   );
-}
+};
+
+export default UpdateCustomerForm;

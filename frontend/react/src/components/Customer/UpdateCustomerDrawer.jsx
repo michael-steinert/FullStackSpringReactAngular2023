@@ -15,11 +15,11 @@ const AddIcon = () => "+";
 
 const CloseIcon = () => "x";
 
-export default function UpdateCustomerDrawer({
+const UpdateCustomerDrawer =({
   fetchCustomers,
   customerId,
   initialValues,
-}) {
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -61,3 +61,5 @@ export default function UpdateCustomerDrawer({
     </>
   );
 }
+
+export default UpdateCustomerDrawer;

@@ -4,7 +4,7 @@ import { login as performLogin } from "../services/client";
 
 const AuthenticationContext = createContext({});
 
-function AuthenticationProvider({ children }) {
+const AuthenticationProvider = ({ children }) => {
   const [customer, setCustomer] = useState(null);
 
   useEffect(() => {
@@ -84,7 +84,7 @@ function AuthenticationProvider({ children }) {
       {children}
     </AuthenticationProvider>
   );
-}
+};
 
 export const useAuthentication = () => useContext(AuthenticationContext);
 
