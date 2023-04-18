@@ -43,6 +43,8 @@ public class SecurityFilterChainConfig {
             "/api/v1/customers",
             "/api/v1/authentication/login")
         .permitAll()
+        .requestMatchers(HttpMethod.GET, "/actuator/**")
+        .permitAll()
         // All other Requests need to be authenticated
         .anyRequest()
         .authenticated()

@@ -4,7 +4,7 @@ server:
     include-message: always
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/customer
+    url: jdbc:postgresql://URL_EBS_DATABASE:5432/ebdb
     username: postgres
     password: password
   jpa:

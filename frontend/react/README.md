@@ -1,4 +1,4 @@
-# React
+# React Application
 
 - React is a JavaScript Library for Building User Interfaces
 - It allows Developers to create reusable UI Components and manage the State of those Components in a simple and efficient Way
