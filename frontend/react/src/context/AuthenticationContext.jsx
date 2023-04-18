@@ -8,6 +8,10 @@ function AuthenticationProvider({ children }) {
   const [customer, setCustomer] = useState(null);
 
   useEffect(() => {
+    setCustomerFromJwt();
+  }, []);
+
+  const setCustomerFromJwt = () => {
     const jwt = localStorage.getItem("access-token");
     if (jwt) {
       const decodedJwt = jwtDecode(jwt);
@@ -16,7 +20,7 @@ function AuthenticationProvider({ children }) {
         roles: decodedJwt.scopes,
       });
     }
-  }, []);
+  };
 
   // const login = async (customerCredentials) => {
   //   return new Promise((resolve, reject) => {
@@ -41,11 +45,7 @@ function AuthenticationProvider({ children }) {
       const jwt = response.headers["authorization"];
       // Save JWT into Local Storage
       localStorage.setItem("access-token", jwt);
-      const decodedJwt = jwtDecode(jwt);
-      setCustomer({
-        username: decodedJwt.sub,
-        roles: decodedJwt.scopes,
-      });
+      setCustomerFromJwt();
       return response;
     } catch (error) {
       throw error;
@@ -73,7 +73,13 @@ function AuthenticationProvider({ children }) {
 
   return (
     <AuthenticationProvider
-      value={{ customer, login, isCustomerAuthenticated, logout }}
+      value={{
+        customer,
+        login,
+        isCustomerAuthenticated,
+        logout,
+        setCustomerFromJwt,
+      }}
     >
       {children}
     </AuthenticationProvider>

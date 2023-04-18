@@ -50,7 +50,7 @@ const CustomSelect = ({ label, ...props }) => {
   );
 };
 
-export default function CreateCustomerForm({ fetchCustomers }) {
+export default function CreateCustomerForm({ onCreatedCustomer }) {
   return (
     <Formik
       initialValues={{
@@ -89,8 +89,8 @@ export default function CreateCustomerForm({ fetchCustomers }) {
             "Customer saved",
             `${customerFormValues.name} was successfully saved`
           );
-          // Fetch new Customers after one was added
-          fetchCustomers();
+          // Execute Function with JWT after Customer was created
+          onCreatedCustomer(response.headers["authorization"]);
         } catch (error) {
           console.error(error);
           errorNotification(error.code, error.response.data.message);

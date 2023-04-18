@@ -97,6 +97,7 @@ export default function Login() {
             Sign in to Account
           </Heading>
           <LoginForm />
+          <Link href="/register" color="blue.500">Register an Account</Link>
         </Stack>
       </Flex>
       <Flex

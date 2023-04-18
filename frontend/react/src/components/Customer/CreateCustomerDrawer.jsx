@@ -28,7 +28,7 @@ export default function CreateCustomerDrawer({ fetchCustomers }) {
           <DrawerCloseButton />
           <DrawerHeader>Create new Customer</DrawerHeader>
           <DrawerBody>
-            <CreateCustomerForm fetchCustomers={fetchCustomers} />
+            <CreateCustomerForm onCreatedCustomer={fetchCustomers} />
           </DrawerBody>
           <DrawerFooter>
             <Button
