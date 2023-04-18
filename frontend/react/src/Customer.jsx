@@ -73,4 +73,4 @@ const Customer = () => {
   );
 };
 
-export default Customers;
+export default Customer;
