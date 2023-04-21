@@ -1,0 +1,17 @@
+<h4 class="text-center mt-0">Dashboard</h4>
+<div class="text-center">
+  <p-avatar
+    image="https://user-images.githubusercontent.com/29623199/230716141-af8e3485-a6d8-41be-bcc8-82eb23209f08.png"
+    styleClass="mr-2"
+    size="xlarge"
+    shape="circle"
+  />
+</div>
+<div>
+ <app-menu-item
+ *ngFor="let menuItem of menu"
+ [menuItem]="menuItem"
+ >
+  {{menuItem.label}}
+ </app-menu-item>
+</div>

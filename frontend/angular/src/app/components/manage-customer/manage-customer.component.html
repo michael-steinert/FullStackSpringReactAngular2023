@@ -1,0 +1,44 @@
+<div>
+  <h2>Manage Customer</h2>
+  <div class="field">
+    <label for="name">Name</label>
+    <input
+      id="name"
+      pInputText
+      placeholder="Bruno"
+      type="text"
+      class="w-full"
+    />
+  </div>
+  <div class="field">
+    <label for="email">Email</label>
+    <input
+      id="email"
+      pInputText
+      placeholder="Bruno@mail.com"
+      type="email"
+      class="w-full"
+    />
+  </div>
+  <div class="field">
+    <label for="age">Age</label>
+    <input id="age" pInputText type="number" class="w-full" />
+  </div>
+  <div class="field">
+    <label for="password">Password</label>
+    <input id="password" pInputText type="password" class="w-full" />
+  </div>
+  <div class="field">
+    <label for="gender">Gender</label>
+    <select id="gender" class="custom-select p-dropdown w-full">
+      <option>Select Gender</option>
+      <option>MALE</option>
+      <option>FEMALE</option>
+    </select>
+  </div>
+  <p-button label="Submit" styleClass="w-full"></p-button>
+  <p-button
+    label="Cancel"
+    styleClass="w-full p-button-outlined p-button-danger mt-2"
+  ></p-button>
+</div>
