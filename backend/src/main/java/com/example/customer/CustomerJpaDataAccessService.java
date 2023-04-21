@@ -1,5 +1,7 @@
 package com.example.customer;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,7 +18,8 @@ public class CustomerJpaDataAccessService implements CustomerDao {
 
   @Override
   public List<Customer> selectAllCustomers() {
-    return customerRepository.findAll();
+    Page<Customer> customerPage = customerRepository.findAll(Pageable.ofSize(42));
+    return customerPage.getContent();
   }
 
   @Override
