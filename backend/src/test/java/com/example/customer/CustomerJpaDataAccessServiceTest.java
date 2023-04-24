@@ -96,7 +96,7 @@ class CustomerJpaDataAccessServiceTest {
   @Test
   void canRemoveCustomer() {
     // Given
-    int customerId = 0;
+    Integer customerId = 0;
     // When
     underTest.removeCustomer(customerId);
     // Then
@@ -121,5 +121,16 @@ class CustomerJpaDataAccessServiceTest {
     underTest.existsCustomerWithEmail(email);
     // Then
     verify(customerRepository).existsCustomerByEmail(email);
+  }
+
+  @Test
+  void canUpdateCustomerImageId() {
+    // Given
+    int customerId = 10;
+    String imageId = "imageId";
+    // When
+    underTest.updateCustomerImageId(imageId, customerId);
+    // Then
+    verify(customerRepository).updateImageId(imageId, customerId);
   }
 }

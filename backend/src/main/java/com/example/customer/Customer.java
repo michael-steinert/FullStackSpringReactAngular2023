@@ -12,7 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "customer", uniqueConstraints = {
-    @UniqueConstraint(name = "customer_email_unique", columnNames = "email")
+    @UniqueConstraint(name = "customer_email_unique", columnNames = "email"),
+    @UniqueConstraint(name = "image_id_unique", columnNames = "imageId")
 })
 public class Customer implements UserDetails {
   @Id
@@ -30,6 +31,14 @@ public class Customer implements UserDetails {
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   private Gender gender;
+  @Column(unique = true)
+  private String imageId;
+
+  public Customer(Integer id, String name, String email, String password, Integer age, Gender gender, String imageId) {
+    // Calling the Constructor with 6 Parameters
+    this(id, name, email, password, age, gender);
+    this.imageId = imageId;
+  }
 
   public Customer(Integer id, String name, String email, String password, Integer age, Gender gender) {
     this.id = id;
@@ -91,33 +100,12 @@ public class Customer implements UserDetails {
     this.gender = gender;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o)
-      return true;
-    if (o == null || getClass() != o.getClass())
-      return false;
-    Customer customer = (Customer) o;
-    return Objects.equals(id, customer.id) && Objects.equals(name, customer.name)
-        && Objects.equals(email, customer.email) && Objects.equals(password, customer.password)
-        && Objects.equals(age, customer.age) && gender == customer.gender;
+  public String getImageId() {
+    return imageId;
   }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, name, email, password, age, gender);
-  }
-
-  @Override
-  public String toString() {
-    return "Customer{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", email='" + email + '\'' +
-        ", password='" + password + '\'' +
-        ", age=" + age +
-        ", gender=" + gender +
-        '}';
+  public void setImageId(String imageId) {
+    this.imageId = imageId;
   }
 
   @Override
@@ -153,5 +141,35 @@ public class Customer implements UserDetails {
   @Override
   public boolean isEnabled() {
     return true;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Customer customer = (Customer) o;
+    return Objects.equals(id, customer.id) && Objects.equals(name, customer.name)
+        && Objects.equals(email, customer.email) && Objects.equals(password, customer.password)
+        && Objects.equals(age, customer.age) && gender == customer.gender
+        && Objects.equals(imageId, customer.imageId);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name, email, password, age, gender, imageId);
+  }
+
+  @Override
+  public String toString() {
+    return "Customer{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", email='" + email + '\'' +
+        ", password='" + password + '\'' +
+        ", age='" + age + '\'' +
+        ", gender='" + gender + '\'' +
+        ", imageId='" + imageId + "'}";
   }
 }

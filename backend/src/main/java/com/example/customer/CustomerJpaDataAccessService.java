@@ -23,7 +23,7 @@ public class CustomerJpaDataAccessService implements CustomerDao {
   }
 
   @Override
-  public Optional<Customer> selectCustomerById(Integer customerId) {
+  public Optional<Customer> selectCustomerById(int customerId) {
     return customerRepository.findById(customerId);
   }
 
@@ -38,12 +38,12 @@ public class CustomerJpaDataAccessService implements CustomerDao {
   }
 
   @Override
-  public void removeCustomer(Integer customerId) {
+  public void removeCustomer(int customerId) {
     customerRepository.deleteById(customerId);
   }
 
   @Override
-  public boolean existsCustomerWithId(Integer customerId) {
+  public boolean existsCustomerWithId(int customerId) {
     return customerRepository.existsCustomerById(customerId);
   }
 
@@ -55,5 +55,10 @@ public class CustomerJpaDataAccessService implements CustomerDao {
   @Override
   public Optional<Customer> selectUserByEmail(String email) {
     return customerRepository.findCustomerByEmail(email);
+  }
+
+  @Override
+  public void updateCustomerImageId(String imageId, int customerId) {
+    customerRepository.updateImageId(imageId, customerId);
   }
 }

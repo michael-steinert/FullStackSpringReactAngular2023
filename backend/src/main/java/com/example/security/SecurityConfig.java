@@ -27,8 +27,8 @@ public class SecurityConfig {
   @Bean
   public AuthenticationProvider authenticationProvider(UserDetailsService useDetailsService,
       PasswordEncoder passwordEncoder) {
-    // DaoAuthenticationProvider is used for Authentication with Username and
-    // Password
+    // DaoAuthenticationProvider is used for Authentication with Combination of
+    // Username and Password
     DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
     daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
     daoAuthenticationProvider.setUserDetailsService(useDetailsService);

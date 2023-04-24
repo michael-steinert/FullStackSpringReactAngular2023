@@ -242,4 +242,31 @@ class CustomerJdbcDataAccessServiceTest extends SetupTestcontainersSuite {
     // Then
     assertThat(actualCustomer).isFalse();
   }
+
+  @Test
+  void canUpdateCustomerImageId() {
+    // Given
+    String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
+    Customer customer = new Customer(
+        FAKER.name().fullName(),
+        email,
+        "password",
+        29,
+        Gender.MALE);
+    underTest.insertCustomer(customer);
+    int customerId = underTest.selectAllCustomers()
+        .stream()
+        .filter(c -> c.getEmail().equals(email))
+        .map(Customer::getId)
+        .findFirst()
+        .orElseThrow();
+    // When
+    String imageId = "imageId";
+    underTest.updateCustomerImageId(imageId, customerId);
+    // Then
+    Optional<Customer> optionalCustomer = underTest.selectCustomerById(customerId);
+    assertThat(optionalCustomer).isPresent().hasValueSatisfying(c -> {
+      assertThat(c.getImageId()).isEqualTo(imageId);
+    });
+  }
 }

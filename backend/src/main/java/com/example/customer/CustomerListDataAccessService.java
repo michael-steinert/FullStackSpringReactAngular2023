@@ -37,7 +37,7 @@ public class CustomerListDataAccessService implements CustomerDao {
   }
 
   @Override
-  public Optional<Customer> selectCustomerById(Integer customerId) {
+  public Optional<Customer> selectCustomerById(int customerId) {
     return customers.stream()
         .filter(c -> c.getId().equals(customerId))
         .findFirst();
@@ -54,7 +54,7 @@ public class CustomerListDataAccessService implements CustomerDao {
   }
 
   @Override
-  public void removeCustomer(Integer customerId) {
+  public void removeCustomer(int customerId) {
     customers.stream()
         .filter(c -> c.getId().equals(customerId))
         .findFirst()
@@ -62,7 +62,7 @@ public class CustomerListDataAccessService implements CustomerDao {
   }
 
   @Override
-  public boolean existsCustomerWithId(Integer customerId) {
+  public boolean existsCustomerWithId(int customerId) {
     return customers.stream().anyMatch(c -> c.getId().equals(customerId));
   }
 
@@ -77,5 +77,10 @@ public class CustomerListDataAccessService implements CustomerDao {
     return customers.stream()
         .filter(c -> c.getUsername().equals(email))
         .findFirst();
+  }
+
+  @Override
+  public void updateCustomerImageId(String imageId, int customerId) {
+    throw new UnsupportedOperationException("Unimplemented method 'updateCustomerImageId'");
   }
 }

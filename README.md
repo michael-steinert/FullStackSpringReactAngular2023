@@ -86,6 +86,19 @@
   <img src="https://user-images.githubusercontent.com/29623199/232767127-f3681c09-40d2-4adb-8f48-b30f12fbef20.png" alt="AWS_Improved_Infrastructure" />
 </P>
 
+#### AWS IAM (Identity and Access Management)
+
+- An AWS IAM Policy is a Document that defines Permissions for an IAM Identity, which can be a User, Group, or Role. The Policy is essentially a Set of Rules that determine what Actions an Identity is allowed or denied to perform on AWS Resources
+- An IAM Policy consists of one or more Policy Statements, each of which contains a List of Actions, Resources, and Conditions that define the Permissions for the Identity. For Example, a Policy Statement might allow a User to read Objects in a particular S3 Bucket, but deny the Ability to delete them
+- IAM Policies can be attached to IAM Identities, meaning that the Permissions defined in the Policy apply to the Identity. Policies can also be used in Combination with other AWS Services, such as AWS Organizations and Amazon SNS, to provide granular Access Control across Resources and Services
+- AWS provides a Number of predefined Policies that cover common Use Cases, such as Read-only Access to Resources or Full Access to a particular Service
+
+##### AWS IAM Policy Simulator
+
+- The AWS IAM Policy Simulator is a Web-based Tool provided by AWS that allows Users to simulate the Effects of IAM Policies to verify that the Policies provide the intended Level of Access to AWS Resources
+- The IAM Policy Simulator works by allowing Users to create hypothetical Scenarios in which an IAM Policy is applied to an AWS Resource, and then determine what Actions the associated IAM Identity can or can not perform on that Resource. It provides a detailed Report of the Access that the Identity would have in the Scenario, which can be used to identify and troubleshoot Issues with the IAM Policy
+- It also allows Users to test the impact of multiple Policies on a single Resource and view the combined Results of those Policies
+
 #### Security Group
 
 - A Security Group controls the Traffic from the Internet (i.e. 0.0.0.0) that can enter and leave the Resources to which it is associated
@@ -129,6 +142,19 @@
 #### Amazon EC2 (Elastic Compute Cloud)
 
 - Amazon EC2 provides Cloud Computing with a choice of the latest Processors, Storage, Networks, Operating Systems and Pricing Models to meet User Workload Requirements
+
+#### Amazon S3 (Simple Storage Service)
+
+- Amazon S3 is a Cloud-based Object Storage Service provided by AWS. It allows Users to store and retrieve Data from anywhere on the Internet at any Time, with high Durability, Availability, and Scalability
+- It offers features such as Versioning, Lifecycle Policies, multi-region Replication, and Access Control, allowing Users to manage their Data securely and efficiently
+- It is also integrated with other AWS Services, such as Amazon EC2, making it a powerful and versatile Storage Solution for many Types of Workloads
+
+##### S3 Bucket
+
+- An S3 Bucket is a logical Container for Storing Objects in Amazon S3. It is a universal Namespace that can be used to store and retrieve any Amount of Data, from anywhere on the Internet, at any Time
+- S3 Buckets can be used to store a wide variety of Data Types. Each Item stored in an S3 Bucket is uniquely identified by a Key that can be used to retrieve the Item
+- S3 Buckets can be created and managed using the AWS Management Console, AWS CLI, or programmatically using AWS SDK
+- Users can set Bucket-Level Permissions to control Access to Objects stored in the Bucket, and can also use Bucket Policies to grant or restrict Access to specific Users or Groups
 
 ## Docker
 

@@ -18,6 +18,12 @@ spring:
     show-sql: true
   main:
     web-application-type: servlet
+  servlet:
+    multipart:
+      max-file-size: 4MB
+      max-request-size: 4MB
+  codec:
+    max-in-memory-size: 4MB
 cors:
   allowed-origins: "*"
   allowed-methods: "*"
@@ -28,3 +34,9 @@ management:
     web:
       exposure:
         include: "health"
+aws:
+  region: eu-central-1
+  s3:
+    buckets:
+      customer: my-bucket
+    is_mock: true

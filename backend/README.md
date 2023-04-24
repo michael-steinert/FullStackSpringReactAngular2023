@@ -145,3 +145,18 @@
 - DTOs are flat Data Structures that contain no Business Logic. They only contain Storage, Accessors and possibly Methods related to Serialization or Parsing
 - A Mapper Component is used to transfer the Data, ensuring that the DTO and Domain Model (i.e. Entity) do not need to know about each other
 - By using DTOs, the System Structure is not exposed to the Client because the Client only gets the Information in the DTO that it needs. This allows different Views of the System to be built
+
+## AWS SDK
+
+- The AWS SDK for Java provides a Java API for AWS Services
+- With the AWS SDK, it is possible to build Java Applications that work with AWS Services such as Amazon S3, Amazon EC2, DynamoDB and more
+- Before making a Request to AWS Services using the AWS SDK, the AWS SDK cryptographically signs temporary Credentials issued by AWS. To access the temporary Credentials, the AWS SDK retrieves Configuration Values by Checking several Locations like Java System Properties, Environment Variables, Web Identity Token from AWS and more, but the last Location is the EC2 Instance IAM Role-provided Credentials
+
+### Access Keys
+
+- Access and Secret Keys are Credentials used to authenticate and authorize Access to AWS Services
+- They allow to send programmatic Calls to the AWS API to call AWS Services from the AWS SDK or AWS CLI (Command Line Interface )
+- Access Keys consist of an Access Key ID and a Secret Access Key, which are used together to authenticate Requests made to AWS Services through APIs
+- The Access Key ID is a unique Identifier used to identify the User or Application making the Request, while the Secret Access Key is a confidential String used to sign Requests to AWS Services
+- Access Keys are associated with an AWS Account and can be created and managed using the AWS Management Console or the AWS CLI
+- Users can have multiple Access Keys associated with their AWS Account, and they can be rotated or deleted as needed

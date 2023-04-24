@@ -22,7 +22,7 @@ public class CustomerJdbcDataAccessService implements CustomerDao {
   @Override
   public List<Customer> selectAllCustomers() {
     var sql = """
-        SELECT id, name, email, password, age, gender
+        SELECT id, name, email, password, age, gender, image_id
         FROM customer
         LIMIT 42
         """;
@@ -30,15 +30,13 @@ public class CustomerJdbcDataAccessService implements CustomerDao {
   }
 
   @Override
-  public Optional<Customer> selectCustomerById(Integer id) {
+  public Optional<Customer> selectCustomerById(int id) {
     var sql = """
-        SELECT id, name, email, password, age, gender
+        SELECT id, name, email, password, age, gender, image_id
         FROM customer
         WHERE id = ?
         """;
-    return jdbcTemplate.query(sql, customerRowMapper, id)
-        .stream()
-        .findFirst();
+    return jdbcTemplate.query(sql, customerRowMapper, id).stream().findFirst();
   }
 
   @Override
@@ -61,48 +59,33 @@ public class CustomerJdbcDataAccessService implements CustomerDao {
   public void updateCustomer(Customer update) {
     if (update.getName() != null) {
       String sql = "UPDATE customer SET name = ? WHERE id = ?";
-      int result = jdbcTemplate.update(
-          sql,
-          update.getName(),
-          update.getId());
+      int result = jdbcTemplate.update(sql, update.getName(), update.getId());
       System.out.println("Update Customer Name Result:" + result);
     }
     if (update.getEmail() != null) {
       String sql = "UPDATE customer SET email = ? WHERE id = ?";
-      int result = jdbcTemplate.update(
-          sql,
-          update.getEmail(),
-          update.getId());
+      int result = jdbcTemplate.update(sql, update.getEmail(), update.getId());
       System.out.println("Update Customer Email Result:" + result);
     }
     if (update.getPassword() != null) {
       String sql = "UPDATE customer SET password = ? WHERE id = ?";
-      int result = jdbcTemplate.update(
-          sql,
-          update.getPassword(),
-          update.getId());
+      int result = jdbcTemplate.update(sql, update.getPassword(), update.getId());
       System.out.println("Update Customer Password Result:" + result);
     }
     if (update.getAge() != null) {
       String sql = "UPDATE customer SET age = ? WHERE id = ?";
-      int result = jdbcTemplate.update(
-          sql,
-          update.getAge(),
-          update.getId());
+      int result = jdbcTemplate.update(sql, update.getAge(), update.getId());
       System.out.println("Update Customer Age Result:" + result);
     }
     if (update.getGender() != null) {
       String sql = "UPDATE customer SET gender = ? WHERE id = ?";
-      int result = jdbcTemplate.update(
-          sql,
-          update.getGender().name(),
-          update.getId());
+      int result = jdbcTemplate.update(sql, update.getGender().name(), update.getId());
       System.out.println("Update Customer Gender Result:" + result);
     }
   }
 
   @Override
-  public void removeCustomer(Integer customerId) {
+  public void removeCustomer(int customerId) {
     var sql = """
         DELETE
         FROM customer
@@ -113,7 +96,7 @@ public class CustomerJdbcDataAccessService implements CustomerDao {
   }
 
   @Override
-  public boolean existsCustomerWithId(Integer customerId) {
+  public boolean existsCustomerWithId(int customerId) {
     var sql = """
         SELECT count(id)
         FROM customer
@@ -137,12 +120,17 @@ public class CustomerJdbcDataAccessService implements CustomerDao {
   @Override
   public Optional<Customer> selectUserByEmail(String email) {
     var sql = """
-        SELECT id, name, email, password, age, gender
+        SELECT id, name, email, password, age, gender, image_id
         FROM customer
         WHERE email = ?
         """;
-    return jdbcTemplate.query(sql, customerRowMapper, email)
-        .stream()
-        .findFirst();
+    return jdbcTemplate.query(sql, customerRowMapper, email).stream().findFirst();
+  }
+
+  @Override
+  public void updateCustomerImageId(String imageId, int customerId) {
+    var sql = "UPDATE customer SET image_id = ? WHERE id = ?";
+    int result = jdbcTemplate.update(sql, imageId, customerId);
+    System.out.println("Insert Image Id Result:" + result);
   }
 }
