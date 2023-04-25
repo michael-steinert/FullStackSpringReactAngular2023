@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://URL_EBS_DATABASE:5432/ebdb
+    username: postgres
+    password: password

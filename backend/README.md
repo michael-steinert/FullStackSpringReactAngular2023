@@ -33,6 +33,13 @@
 
 ## Spring
 
+### Spring Profiles
+
+- Spring Profiles is a Feature of the Spring Framework that allows Developers to define different Configurations for an Application based on the Environment it is running in. A Profile is a Set of Configurations that can be activated at Runtime to customize the Behavior of an Application
+- Profiles can be used to specify different Configurations for different Environments, such as Development, Test and Production. This allows Developers to write Code that is more flexible and portable because the same Code can run in different Environments with different Profiles
+- To use Spring Profiles, Developers can define multiple Configuration Files, each with a different Set of Configurations for a Specific environment. These Configuration Files are typically stored in the Class Path and are loaded at Runtime based on the active Profile
+- The Configurations of a new Profile overwrite the Configurations of the Default Profile, while the remaining Configurations are adopted
+
 ### Application Context
 
 - When Beans are created, they are stored in an Instance of ApplicationContext

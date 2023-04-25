@@ -14,8 +14,8 @@
       ],
       "environment": [
         {
-          "name": "SPRING_DATASOURCE_URL",
-          "value": "jdbc:postgresql://URL_EBS_DATABASE:5432/ebdb"
+          "name": "SPRING_PROFILES_ACTIVE",
+          "value": "development"
         }
       ]
     },
