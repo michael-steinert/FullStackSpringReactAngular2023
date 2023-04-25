@@ -362,7 +362,7 @@ public class CustomerIntegrationTest {
     // Send a Get Request get uploaded Image
     byte[] downloadedFile = webTestClient.get()
         .uri(CUSTOMER_PATH + "/{customerId}/image", customer.id())
-        .accept(MediaType.APPLICATION_JSON)
+        .accept(MediaType.IMAGE_JPEG)
         .exchange()
         .expectStatus()
         .isOk()

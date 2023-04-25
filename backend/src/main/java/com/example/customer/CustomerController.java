@@ -63,7 +63,7 @@ public class CustomerController {
     customerService.removeCustomer(customerId);
   }
 
-  @GetMapping(path = "{customerId}/image")
+  @GetMapping(value = "{customerId}/profile-image", produces = MediaType.IMAGE_JPEG_VALUE)
   public byte[] downloadCustomerImage(@PathVariable("customerId") Integer customerId) {
     return customerService.downloadCustomerImage(customerId);
   }

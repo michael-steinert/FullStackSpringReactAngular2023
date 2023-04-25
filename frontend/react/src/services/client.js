@@ -28,10 +28,10 @@ export const saveCustomer = async (customer) => {
   }
 };
 
-export const updateCustomer = async (id, updatedCustomer) => {
+export const updateCustomer = async (customerId, updatedCustomer) => {
   try {
     return await axios.put(
-      `${import.meta.env.VITE_API_BASE_URL}/api/v1/customers/${id}`,
+      `${import.meta.env.VITE_API_BASE_URL}/api/v1/customers/${customerId}`,
       updatedCustomer,
       getAuthenticationConfig()
     );
@@ -40,10 +40,10 @@ export const updateCustomer = async (id, updatedCustomer) => {
   }
 };
 
-export const deleteCustomer = async (id) => {
+export const deleteCustomer = async (customerId) => {
   try {
     return await axios.delete(
-      `${import.meta.env.VITE_API_BASE_URL}/api/v1/customers/${id}`,
+      `${import.meta.env.VITE_API_BASE_URL}/api/v1/customers/${customerId}`,
       getAuthenticationConfig()
     );
   } catch (error) {
@@ -61,3 +61,23 @@ export const login = async (customerCredentials) => {
     throw error;
   }
 };
+
+export const uploadImage = async (customerId, uploadedImage) => {
+  try {
+    return await axios.post(
+      `${
+        import.meta.env.VITE_API_BASE_URL
+      }/api/v1/customers/${customerId}/image`,
+      uploadedImage,
+      {
+        ...getAuthenticationConfig(),
+        "Content-Type": "multipart/form-data",
+      }
+    );
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const customerImageUrl = (customerId) =>
+  `${import.meta.env.VITE_API_BASE_URL}/api/v1/customers/${customerId}/image`;

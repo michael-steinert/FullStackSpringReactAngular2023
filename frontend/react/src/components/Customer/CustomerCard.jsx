@@ -26,18 +26,9 @@ import {
 } from "../../services/notification.js";
 import UpdateCustomerDrawer from "./UpdateCustomerDrawer.jsx";
 
-const CardWithImage = ({
-  id,
-  name,
-  email,
-  age,
-  gender,
-  imageNumber,
-  fetchCustomers,
-}) => {
+const CardWithImage = ({ id, name, email, age, gender, fetchCustomers }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef();
-  const randomUserGender = gender === "MALE" ? "men" : "women";
 
   const handleDeleteCustomer = async () => {
     try {
@@ -76,7 +67,7 @@ const CardWithImage = ({
         <Flex justify="center" mt={-12}>
           <Avatar
             size="xl"
-            src={`https://randomuser.me/api/portraits/${randomUserGender}/${imageNumber}.jpg`}
+            src={customerImageUrl(id)}
             alt="Customer"
             css={{
               border: "2px solid white",

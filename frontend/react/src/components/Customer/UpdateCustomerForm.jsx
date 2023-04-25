@@ -6,10 +6,17 @@ import {
   FormLabel,
   Input,
   Stack,
+  VStack,
 } from "@chakra-ui/react";
 import { Form, Formik, useField } from "formik";
+import { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
 import * as Yup from "yup";
-import { updateCustomer } from "../../services/client.js";
+import {
+  customerImageUrl,
+  updateCustomer,
+  uploadImage,
+} from "../../services/client.js";
 import {
   errorNotification,
   successNotification,
@@ -34,9 +41,57 @@ const CustomTextInput = ({ label, ...props }) => {
   );
 };
 
+const ImageDropzone = ({ customerId, fetchCustomers }) => {
+  const onDrop = useCallback(async (acceptedFiles) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", acceptedFiles[0]);
+      await uploadImage(customerId, formData);
+      successNotification("Success", "Image uploaded");
+      fetchCustomers();
+    } catch (error) {
+      errorNotification("Error", "Image not uploaded");
+      console.error(error);
+    }
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  return (
+    <Box
+      w="100%"
+      textAlign="center"
+      border="dashed"
+      borderColor="gray.300"
+      borderRadius="lg"
+      rounded="md"
+      p={4}
+      {...getRootProps()}
+    >
+      <input {...getInputProps()} />
+      {isDragActive ? (
+        <p>Drop the Image here</p>
+      ) : (
+        <p>Drag 'n' drop Image here, or click to select Image</p>
+      )}
+    </Box>
+  );
+};
+
 const UpdateCustomerForm = ({ fetchCustomers, customerId, initialValues }) => {
   return (
     <>
+      <VStack spacing={2} mb={2}>
+        <Image
+          src={customerImageUrl(customerId)}
+          borderRadius="full"
+          boxSize="150px"
+          objectFit="cover"
+        />
+        <ImageDropzone
+          customerId={customerId}
+          fetchCustomers={fetchCustomers}
+        />
+      </VStack>
       <Formik
         initialValues={initialValues}
         validateOnMount={true}
