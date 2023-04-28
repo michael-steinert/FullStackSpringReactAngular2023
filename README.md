@@ -20,6 +20,23 @@
   <img src="https://user-images.githubusercontent.com/29623199/229474154-d8132aea-d456-4a68-8bd1-7644b63e00d1.png" alt="CI_CD" />
 </P>
 
+### CI/CD (Continuous Integration/Continuous Delivery)
+
+- CI/CD is an Approach to Software Development that aims to improve the Speed, Efficiency and Reliability of Software Delivery
+- It involves frequent code Integration, automated Testing and continuous Deployment of Software Changes into the Production Environment
+- The following four Steps of a CI/CD Pipeline work together to ensure that Software Changes are automatically tested, integrated and deployed into Production Environment. This Automation helps to reduce Errors, increase Efficiency and improve overall Software Quality
+  - **Code Integration**: In this Step, Developers commit their Code Changes to a remote Repository where the Code is merged into the main Codebase. The Purpose of this Step is to ensure that the Code Changes are compatible with the Rest of the Codebase and do not break the Build
+  - **Automated Testing**: This Step is where the integrated Code is automatically tested. This involves Running a Series of Tests to ensure that the Code Changes are functional, meet the expected Quality Standards and are free of Defects. This Step helps to identify Problems early in the Development Process, allowing Developers to fix them quickly and efficiently
+  - **Continuous Deployment**: In this Step, the tested Code Changes are automatically and continuously deployed to a Staging Environment for further Testing. The Aim of this Step is to ensure that the Software is continuously updated with the latest Code Changes, so that new Features and Functionality can be delivered to Users quickly and efficiently
+  - **Production Deployment**: In this Step, the Code Changes are deployed into the Production Environment. This is where the Code Changes are released to End Users. This Step involves Monitoring the Production Environment, ensuring that the Software is running smoothly, and Identifying and Resolving any Issues that arise
+- By Adopting a CI/CD Pipeline, Development Teams can achieve faster Release Cycles, reduce the Risk of Software Defects, and improve the User Experience
+- The Key Benefits of CI/CD are as follows:
+- **Faster Release Cycles**: By Automating the Testing and Deployment Process, CI/CD enables Development Teams to release Software more frequently and respond quickly to Customer Needs
+- **Improved Quality**: Automated Testing ensures that Software Changes do not introduce new Defects or Problems, improving the overall Quality of the Software
+- **Increased Collaboration**: Frequent Code Integration and Testing requires Developers to work closely together, leading to better Collaboration and Communication
+- **Reduced Risk**: Continuous Delivery enables Developers to identify and fix Problems quickly, reducing the Risk of major Failures and Downtime
+- **Cost-Effective**: CI/CD reduces the Amount of manual Work required to deploy Software Changes, saving Time and reducing Costs
+
 ### Bastion Host
 
 - A Bastion Host is a secure Gateway Server that acts as a single Point of Access to Servers and Resources on a private Network. It is typically deployed on a public Subnet of a Virtual Private Cloud (VPC) in AWS
