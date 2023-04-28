@@ -175,11 +175,20 @@
 
 ## Docker
 
-- Docker is a Platform for Building, Running and Shipping Applications
-- It allows Developers to easily build and deploy Applications that run in Containers
+- Docker is a Tool for Containerizing and Deploying Applications that provides a standardized Way to Package Applications, along with their Dependencies and Runtime Environment, into a Container that can be easily distributed and run on different Environments
+- Docker also allows the Building, Running and Shipping of Applications
+- Containerizing means to build and deploy Applications that run in Containers
+- To make the Containerization Process even more efficient, Registries have been introduced to allow Developers to store and manage their Container Images
 - It ensures that local Development is the same as in any Environment
 - Containers are an Abstraction at the Application Layer that packages Code and Dependencies together
 - Multiple Containers can run on the same Machine, sharing the OS Kernel with other Containers, each running as an isolated Process in User Space
+
+### Docker Image
+
+- A Docker Image is a lightweight, self-contained, executable Package that contains everything needed to run an Application, including the Application code, Runtime, Libraries and System Tools
+- Docker Images are created using a Dockerfile, which is a Script that specifies the Steps to build the Image
+- To build a Docker Image, a Dockerfile must first be created, specifying the Base Image, any additional Dependencies, and the Commands to install and configure the Application. Once the Dockerfile is created, the Docker `build` Command can be used to build the Image
+- The Docker `build` Command takes the Path to the Dockerfile and uses it to build the Image. These Command first reads the Dockerfile, downloads any necessary Dependencies, and builds an Image from the specified Configuration. The resulting Image can then be used to run Containers of it
 
 ### Docker Commands
 
